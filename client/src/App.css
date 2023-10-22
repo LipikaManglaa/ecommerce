@@ -1,0 +1,16 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Assistant', sans-serif;
+  box-sizing: border-box;
+
+}
+:root{
+  --primary-color:#282c3f;
+  --seconday-color:#ee5f73;
+  --pink-color:#fb56c1;
+  --orange-color:#f26a10;
+  --yellow-color:#f2c210;
+  --green-color:#0db7af;
+  --red-orange-color:#ff3f6c;
+}

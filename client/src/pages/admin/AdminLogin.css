@@ -1,0 +1,21 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.admin-banner{
+width: 60% !important;
+
+}
+.admin-banner-inner{
+height: 100vh;
+}
+.admin-banner-inner img{
+height: 100% !important;
+}
+.admin-login{
+width: 30% !important;
+margin-top: 100px !important;
+border: 1px solid grey;
+height: 300px !important;
+padding: 20px !important;
+}

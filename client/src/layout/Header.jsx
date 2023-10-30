@@ -1,691 +1,101 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './../styles/Header.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logoheader from './../images/logoheader.png'
 
-import { faBagShopping, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping, faBars, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from '../context/auth';
+
+import { toast } from 'react-toastify';
+import axios from 'axios';
 export default function Header() {
   
+  const [auth, setAuth] = useAuth()
+  const [headerData,setHeaderData]=useState([])
+
  
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    localStorage.clear();
+    toast.success("Logout Successfully");
+  };
+
+let [openMenu,setopenMenu]=useState(false)
+  let dispalyMenu=()=>{
+    alert("dd")
+    setopenMenu(!openMenu)
+  }
+  const getallData =  () => {
+ 
+      axios.get("http://localhost:5000/api/get-category")
+    .then((res)=>res.data)
+    .then((finalData)=>{
+     
+      setHeaderData(finalData.finalresult)
+
+   
+    })
+      
+    };
+
+useEffect(()=>{
+getallData()
+
+},[])
+
     return (
       <div class="main">
      <header>
-  <i className="fa-solid fa-bars header-bar" />
+
   <div className="logo">
-    <img src="images/logo.png" />
+    <img src={logoheader} style={{paddingBottom:'10px'}}/>
   </div>
+
   <div className="menu">
     <ul>
-      <li className="showsubitems"><Link to="#">Men</Link>
-        <div className="subMenu" />
-        <div className="submenylist">
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li className="list-color1 showsubitems"> <Link to="#">Women</Link>
-        <div className="subMenu submeny-color1" />
-        <div className="submenylist">
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li className="list-color2 showsubitems"><Link to>Kids</Link>
-        <div className="subMenu submeny-color2" />
-        <div className="submenylist">
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li className="list-color3 showsubitems"><Link to>Home &amp; Living</Link>
-        <div className="subMenu submeny-color3" />
-        <div className="submenylist">
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li className="list-color4 showsubitems"><Link to>Beauty</Link>
-        <div className="subMenu submeny-color4" />
-        <div className="submenylist">
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="sub-list-item">
-            <div className="list-item">
-              <h3>Topwear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">T-Shirts</Link></li>
-                <li><Link to="#">Casual-Shirts</Link></li>
-                <li><Link to="#">Formal-Shirts</Link></li>
-                <li><Link to="#">Sweatshirts</Link></li>
-                <li><Link to="#">Sweaterss</Link></li>
-                <li><Link to="#">Jackets</Link></li>
-                <li><Link to="#">Blazers</Link></li>
-                <li><Link to="#">Suits</Link></li>
-                <li><Link to="#">Rain jackets</Link></li>
-              </ul>
-            </div>
-            <div className="list-item">
-              <h3>Indian &amp; Festive Wear</h3>
-              <ul className="sub-menu">
-                <li><Link to="#">Kurta &amp; Kurta Sets</Link></li>
-                <li><Link to="#">Shervani</Link></li>
-                <li><Link to="#">Nehru jackets</Link></li>
-                <li><Link to="#">Dhoti</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li className="list-color5 showsubitems"><Link to>studio</Link><sup>New</sup>
-        <div className="subMenu submeny-color4" />
-        <div className="submenylist submneuliststudio">
-          <div className="sub-list-item">
-            <div className="list-item">
-              <img src="images/studio-logo-new.svg" />
-              <span>Your daily inspiration for everything fashion</span>
-              <img src="images/sudio-nav-banner.png" className="nav-banner-studio" />
-              <button>Explore Video<i className="fa-solid fa-greater-than" /></button>
-            </div>
-          </div>
-        </div>
-      </li>
+      {
+      
+        headerData.length>0 ? 
+        
+   headerData.map((v,i)=>{
+    
+  
+    return(
+      <li className="showsubitems">
+        
+              
+        <Link to={`/category/`+v.category.slug}>{v.category.name}</Link>
+      <div className="subMenu" />
+      <div className="submenylist">
+        
+     <SubCategory subcatgoryList={v.subcategories}/>
+
+      
+        
+      </div>
+    </li>
+    )
+   })
+          
+     
+        :""
+      
+}
+     
     </ul>
   </div>
+ 
   <div className="menuright">
-    <div className="serachmenu">
+    {/* <div className="serachmenu">
       <input type="search" placeholder="Search for products,brands and more" />
       <i className="fa-solid fa-magnifying-glass" />
-    </div>
+    </div> */}
     <div className="profilemenu">
 
       <FontAwesomeIcon icon={faUser}/>
@@ -698,32 +108,93 @@ export default function Header() {
           <div className="list-item list-item-profile">
             <h3>Welcome</h3>
             <span>To access account and manage orders</span>
-            <div className="btn-login"><Link to="/signup"> Signup</Link> / <Link to="/login">login</Link></div>
+            {
+            !auth?.user ? (
+            <div className="btn-login"><Link to="/signup"> Signup &nbsp; /</Link>  <Link to="/login">login</Link></div>
+            ) : (
+              <div className="btn-login"><Link to={`/user-dashboard`}> Dashboard &nbsp; /</Link>  <Link to="/login" onClick={handleLogout}>logout</Link></div>
+)}
             <ul>
-              <li><Link to="#">Orders</Link></li>
-              <li><Link to="#">WishList</Link></li>
-              <li><Link to="#">Gift Cards</Link></li>
-              <li><Link to="#">Contact us</Link></li>
-              <li><Link to="#">Coupons</Link></li>
+              <li><Link to={'/Checkout'}>Orders</Link></li>
+              <li><Link to={'/wishlist'}>WishList</Link></li>
+            
+              <li><Link to={'/cart'}>Coupons</Link></li>
             </ul>
           </div>
         </div>
        
        </h3>
     </div>
-    <div className="profilemenu">
+    {/* <div className="profilemenu">
     <FontAwesomeIcon icon={faHeart} />
       <i className="fa-regular fa-heart" />
-      <h3><Link to>Wishlist</Link></h3>
-    </div>
+      <h3><Link to={'/Wishlist'}>Wishlist</Link></h3>
+    </div> */}
     <div className="profilemenu">
       <FontAwesomeIcon icon={faBagShopping}/>
    
-      <h3><Link to>Bag</Link></h3>
+      <h3><Link to={'/cart'}>Bag</Link></h3>
     </div>
+   
+  </div>
+  <div>
+    <FontAwesomeIcon icon={faBars}  onClick={dispalyMenu} className='header-bar'/>
+ 
   </div>
 </header>
 </div>
 
     )
+}
+
+
+
+
+function SubCategory({subcatgoryList}){ 
+
+    return (
+      <>
+      {
+        subcatgoryList.length>0 ?
+subcatgoryList.map((value,index)=>{
+  return(
+    <div className="sub-list-item " >
+    <div className="list-item">
+    
+      <h3>{value.subcategory.name}</h3>
+      <ul className="sub-menu">
+<ProductMenu productList={value.products}/>
+        
+       
+      </ul>
+    </div>
+    
+  </div>
+  )
+})
+
+        : ""
+      }
+     
+      
+      </>
+    )
+}
+
+function ProductMenu({productList}){
+  
+  return(
+<>    {
+
+productList.length>0 ?
+productList.map((v,i)=>{
+  return(
+    <li><Link to={'/'}>{v.name}</Link></li>
+  )
+})
+
+:""
+    }
+</>
+  )
 }

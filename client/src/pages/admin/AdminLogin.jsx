@@ -3,7 +3,6 @@
   import './AdminLogin.css'
   export default function AdminLogin() {
 
-    
   return (
   <div className="ui placeholder">
     <div className="ui two column  stackable grid">

@@ -1,0 +1,121 @@
+.user-dashboard{
+    width: 100%;
+}
+.user-dashboard-inner{
+    max-width:100%;
+    margin: auto;
+}
+.user-dash-head{
+    display: flex;
+    justify-content: space-between;
+}
+.user-dash-left{
+    flex-basis: 23%;
+    background-color: #354052;
+    height: 100vh;
+
+}
+.user-dash-right{
+    flex-basis: 73%;
+}
+.menu-heading{
+    padding: 10px 5px 10px 10px;
+color: #b3b300;
+font-size: smaller;
+border-bottom: 1px solid #2b3443;
+transition: all 0.5s;
+}
+.menu-heading a{
+    color: #b3b300;
+}
+.menu-order:hover{
+background: #2b3443;
+text-decoration: none;
+
+}
+.menu-order{
+  
+background: #354052;
+color: white;
+padding: 15px 10px;
+font-size: 13px;
+
+border-bottom: 1px solid #2b3443;
+}
+.menu-order:hover svg{
+    color: var(--seconday-color)!important;
+   
+}
+.menu-order a{
+    color: #fff;
+    padding-left: 15px;
+}
+.right-user-profile {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #e6e6e6;
+    padding: 15px 30px;
+   
+}
+.user-fa{
+    position: relative;
+}
+.ub-menu-user-list{
+   position: absolute;
+    top: 100%;
+    right: 0px;
+    background-color: #fff;
+   box-shadow: 0px 0px 10px 2px #ccc;
+  
+    width: 140px;
+   display: none;
+    transition: .3s;
+}
+.sub-menu-user-list ul li{
+    text-align: center;
+
+padding: 10px 0px;
+
+}
+.sub-menu-user-list ul li:hover{
+    background-color: #8080804a;
+
+}
+.sub-menu-user-list ul li a{
+    color: var(--primary-color);
+}
+.user-fa:hover .sub-menu-user-list{
+    display: block;
+}
+.user-head-list{
+    background-color: #8080804a;
+    padding: 20px 30px;
+}
+.profile-user-items{
+ padding: 20px;
+    background-color: #fff;
+}
+
+/* profile */
+.user-form{
+    width: 100%;
+    margin-bottom: 15px;
+   
+}
+.user-form input{
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    width: 50%;
+    
+}
+.btn-update{
+    background-color: var(--seconday-color);
+    border: 0px;
+    padding: 13px 20px;
+    text-align: center;
+    color: #fff;
+    width: 200px;
+    font-size: 20px;
+    font-weight: bold;
+}

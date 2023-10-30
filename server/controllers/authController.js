@@ -59,9 +59,12 @@ export const registerController = async (req, res) => {
   };
   
   export const loginController = async (req, res) => {
+  
     try {
      
       const { email, password } = req.body;
+
+
       //validation
       if (!email || !password) {
         return res.status(404).send({
@@ -93,6 +96,7 @@ export const registerController = async (req, res) => {
       name:user.name,
       email:user.email,
       mobile:user.mobile,
+      id:user.id
       },
       token
       })
@@ -106,3 +110,62 @@ export const registerController = async (req, res) => {
       });
     }
   };
+
+
+
+  //display user
+  export const displayUserController=async(req,res)=>{
+    try{
+      const users = await userModel.find({});
+      console.log(users)
+      res.status(200).send({
+        success: true,
+        message: "All User List",
+        users
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        error,
+        message: "Error while getting all users",
+      });
+    }
+  }
+
+
+  export const updateProfileController = async (req, res) => {
+    try {
+      const { name, email, password,  phone } = req.body;
+      const { id } = req.params;
+  
+      if (password && password.length < 6) {
+        return res.json({ error: "Passsword is required and 6 character long" });
+      }
+      const hashedPassword = password ? await hashPassword(password) : undefined;
+      const updatedUser = await userModel.findByIdAndUpdate(
+       id,
+        {
+          name: name ,
+          password: hashedPassword ,
+          phone: phone ,
+       email:email,
+          
+        },
+        { new: true }
+      );
+      res.status(200).send({
+        success: true,
+        message: "Profile Updated SUccessfully",
+        updatedUser,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success: false,
+        message: "Error WHile Update profile",
+        error,
+      });
+    }
+  };
+  

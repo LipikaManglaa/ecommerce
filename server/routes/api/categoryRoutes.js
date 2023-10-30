@@ -6,6 +6,7 @@ import {
   deleteCategoryCOntroller,
   singleCategoryController,
   updateCategoryController,
+  getcreateCategoryController
 } from "./../../controllers/categoryController.js";
 
 const router = express.Router();
@@ -15,6 +16,10 @@ const router = express.Router();
 router.post(
   "/create-category",
     createCategoryController
+);
+router.get(
+  "/get-admin-category",
+    getcreateCategoryController
 );
 
 //update category

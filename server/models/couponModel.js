@@ -7,23 +7,23 @@ const couponSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      uppercase:true,
     },
     type: {
       type: String,
       required: true,
-      unique: true,
-    },
-    amount: {
-      type: Array[fixed,percentage],
+        },
+    discount_amount: {
+      type: String,
       required: true,
     },
     expiry_date:{
-        type: Date, 
-        default: Date.now 
+        type:String, 
+        required:true,
     },
     minimum_amout_order:{
         type: Number,
-        required: true,
+        required: true,    
     },
 
   },

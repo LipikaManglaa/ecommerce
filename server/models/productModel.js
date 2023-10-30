@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema(
       ref: "subCategory",
       required: true,
     },
-    photo: {
+    image: {
       type:String,
     },
    

@@ -6,6 +6,10 @@ import {
   deleteSubCategoryController,
   singleSubCategoryController,
   updateSubCategoryController,
+  subslugCategoryControlller,
+  productSubCategoryControlller,
+  catSubCatgeoryController,
+  produuctFilterController
 } from "./../../controllers/subCategoryController.js";
 
 const router = express.Router();
@@ -26,6 +30,9 @@ router.put(
 // getALl category
 router.get("/get-subcategory", subCategoryControlller);
 
+router.get("/get-subslugcategory", subslugCategoryControlller);
+
+router.get("/getproductsubcategory", productSubCategoryControlller);
 // //single category
 router.get("/single-subcategory/:slug", singleSubCategoryController);
 
@@ -35,4 +42,9 @@ router.delete(
    deleteSubCategoryController
 );
 
+
+//access data from catgroy
+router.get("/get-cat-subcategory",catSubCatgeoryController)
+
+router.post("/productFilter", produuctFilterController)
 export default router;

@@ -6,6 +6,10 @@ const shippingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    city: {
+      type: String,
+      required: true,
+    },
    state: {
       type: String,
       required: true,
@@ -18,16 +22,12 @@ const shippingSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
-      },
+  
    
   },
   { timestamps: true }

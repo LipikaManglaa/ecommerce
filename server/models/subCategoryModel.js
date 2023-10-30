@@ -12,18 +12,26 @@ const subCategorySchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
-    },
+        },
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required:true,
-     
-    },
-   
+     },
+    image:{
+      type:String,
+    }
    
   },
-  { timestamps: true }
-);
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  },
+  { timestamps: true,
+  });
+  
+  //, { strictPopulate: false }
 
-export default mongoose.model("subCategory", subCategorySchema);
+ export default mongoose.model("subCategory", subCategorySchema);

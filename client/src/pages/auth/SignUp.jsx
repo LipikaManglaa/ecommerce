@@ -3,7 +3,7 @@ import  './../../styles/SignUp.css'
 import Layout from '../../layout/Layout'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function SignUp() {
 let navigate=useNavigate()
@@ -15,7 +15,7 @@ let navigate=useNavigate()
     let handleSubmit= async (e) =>{
       e.preventDefault();
       try{
-      const res=await axios.post(`http://localhost:5000/api/v1/auth/register`,{
+      const res=await axios.post(`http://localhost:5000/api/register`,{
           name,email,password,phone
         })
        
@@ -48,22 +48,22 @@ let navigate=useNavigate()
         <div className="form-group">
           <input type="text" placeholder="User Name"  name='name'  value={name}
               onChange={(e) => setName(e.target.value)}/>
-          <span className="errorContainer">Please enter the name</span>
+        
         </div>
         <div className="form-group">
           <input type="email" placeholder="Email" name='email'  value={email}
               onChange={(e) => setEmail(e.target.value)} />
-          <span className="errorContainer">Please enter a valid email</span>
+          
         </div>
         <div className="form-group">
           <input type="password" placeholder="password" name='password'  value={password}
               onChange={(e) => setPassword(e.target.value)}/>
-          <span className="errorContainer">Please enter a valid password</span>
+         
         </div>
         <div className="form-group">
           <input type="tel" placeholder="Mobile Number" name='phone'  value={phone}
               onChange={(e) => setPhone(e.target.value)}/>
-          <span className="errorContainer">Please enter a valid digit number</span>
+         
         </div>
         {/* <div className="form-group">
           <input type="text" placeholder="Address" name="address" />
@@ -72,6 +72,9 @@ let navigate=useNavigate()
        
         <div>
           <button type='submit' className="submitBottomOption">Submit</button>
+        </div>
+        <div>
+        <div><p><Link to={'/login'}>Please Sign Up here!</Link>If you are not login!</p></div>
         </div>
       </form>
     </div>

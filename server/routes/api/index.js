@@ -14,6 +14,11 @@ import orderRoutes from './orderRoutes.js'
 import multer from 'multer'
 import { upload } from "../../middleware/imageuploadMiddleware.js";
 
+
+
+
+
+
 router.use('/', cartRoutes)
 router.use('/',shippingRoutes)
   

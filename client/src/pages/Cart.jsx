@@ -28,7 +28,7 @@ export default function Cart() {
  
     userId=user.user.id;
   
-    axios.get(`http://localhost:5000/api/display-cart/${userId}`)
+    axios.get(`/api/display-cart/${userId}`)
     
     .then((res)=>res.data)
     .then((finalData)=>{
@@ -68,7 +68,7 @@ export default function Cart() {
     let checkCode=e.target.coupon_code.value
      let totalAmount=cartTotal
 
-  axios.post(`http://localhost:5000/api/check-coupon`,{
+  axios.post(`/api/check-coupon`,{
     checkCode
   })
   .then((res)=>{
@@ -188,7 +188,7 @@ let Cartrow=({v,i,getCartData})=>{
     setQty(e.target.value)
     let updateId=v._id;
     let qtyNew=e.target.value;
-axios.post(`http://localhost:5000/api/cart-update/${updateId}`,{
+axios.post(`/api/cart-update/${updateId}`,{
   qty:qtyNew
 })
 .then((res)=>{
@@ -207,7 +207,7 @@ getCartData();
 
     try {
       const { data } = await axios.delete(
-        `http://localhost:5000/api/cart-delete/${delId}`
+        `/api/cart-delete/${delId}`
       );
      
       if (data.success) {
@@ -225,7 +225,7 @@ return(
 
   <tr key={i}>
   <td>{i+1}</td> 
-  <td> <img className="img-cart" src={`http://localhost:5000/`+v.image} alt="" style={{width:'100px'}}/></td>
+  <td> <img className="img-cart" src={`/`+v.image} alt="" style={{width:'100px'}}/></td>
   <td>{v.name}</td>
   <td>{v.amount}</td>
 <td><input type='number'className='input-qty' min={1} max={5} value={qty}   onChange={handleValue}/></td>

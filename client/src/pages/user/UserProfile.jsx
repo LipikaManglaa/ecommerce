@@ -43,7 +43,7 @@ if(userData.length === 0){
      
         let userId=userData.user._id
      
-      const { data } = await axios.put(`http://localhost:5000/api/profile/${userId}`, {
+      const { data } = await axios.put(`/api/profile/${userId}`, {
         name,
         email,
         password,

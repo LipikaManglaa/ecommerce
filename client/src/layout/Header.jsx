@@ -34,7 +34,7 @@ let[active,setActive]=useState(false)
   }
   const getallData =  () => {
  
-      axios.get("http://localhost:5000/api/get-category")
+      axios.get("/api/get-category")
     .then((res)=>res.data)
     .then((finalData)=>{
      

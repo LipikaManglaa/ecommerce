@@ -21,7 +21,7 @@ export default function AddProduct() {
     formData.append("image", image);
     try {
       const result = await axios.post(
-          "http://localhost:5000/api/upload-image",
+          "/api/upload-image",
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

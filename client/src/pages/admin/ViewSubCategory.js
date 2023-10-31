@@ -12,7 +12,7 @@ export default function ViewSubCategory() {
   //getall products
   const getAllCategories = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/get-cat-subcategory");
+      const { data } = await axios.get("/api/get-cat-subcategory");
       console.log(data.data.name)
     setCategories(data.data);
     
@@ -29,7 +29,7 @@ export default function ViewSubCategory() {
   let handleDelete=async(pid)=>{
     try {
         const { data } = await axios.delete(
-          `http://localhost:5000/api/delete-subcategory/${pid}`
+          `/api/delete-subcategory/${pid}`
         );
         if (data.success) {
           toast.success(`subcategory is deleted`);
@@ -102,7 +102,7 @@ return (
                   </td>
                  <td className=" px-6 py-4 whitespace-nowrap" >
                    
-                  <img src={`http://localhost:5000/`+p.image}/>
+                  <img src={`/`+p.image}/>
                    </td>
                    <td className=" px-6 py-4 whitespace-nowrap" >
                    

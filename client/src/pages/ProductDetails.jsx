@@ -17,7 +17,7 @@ export default function ProductDetails() {
    let getproductList = async () => {
 
    
-    axios.get(`http://localhost:5000/api/single-product/${data.slug}`)
+    axios.get(`/api/single-product/${data.slug}`)
     .then((res)=>{
       setData(res.data.product)
     
@@ -38,7 +38,7 @@ export default function ProductDetails() {
       let user = JSON.parse(localStorage.getItem("auth"))
       let userId = user.user.id;
       let qty = 1;
-      axios.post(`http://localhost:5000/api/cart`,
+      axios.post(`/api/cart`,
         {
           userId,
           qty,
@@ -69,7 +69,7 @@ export default function ProductDetails() {
       <div className='item-list'>
         <div className='list-cat'>
         <div className='pr-image'>
-          <img src={`http://localhost:5000/`+datadata.image}/>
+          <img src={`/`+datadata.image}/>
         </div>
         <div className='pr0-cat-lisr'>
           <h3><span>Product Name:</span> &nbsp;{datadata.name}</h3>

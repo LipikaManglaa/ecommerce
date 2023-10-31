@@ -11,7 +11,7 @@ export default function ViewCategory() {
   //getall products
   const getAllCategories = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/get-admin-category");
+      const { data } = await axios.get("/api/get-admin-category");
 
       setCategories(data.categories);
 
@@ -27,7 +27,7 @@ export default function ViewCategory() {
   let handleDelete = async (pid) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:5000/api/delete-category/${pid}`
+        `/api/delete-category/${pid}`
       );
       if (data.success) {
         toast.success(`category is deleted`);
@@ -98,7 +98,7 @@ export default function ViewCategory() {
                         </td>
                         <td className=" px-6 py-4 whitespace-nowrap" >
 
-                          <img src={`http://localhost:5000/` + p.image} />
+                          <img src={`/` + p.image} />
                         </td>
 
 

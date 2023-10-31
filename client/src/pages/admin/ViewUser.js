@@ -6,7 +6,7 @@ import Sidebar from './common/Sidebar'
 export default function ViewUser() {
 let [user,setUSer]=useState([{}])
   function viewUSer(){
-    axios.get(`http://localhost:5000/api/display-user`)
+    axios.get(`/api/display-user`)
     .then((res)=>{
       setUSer(res.data.users)
     })

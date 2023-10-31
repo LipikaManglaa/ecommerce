@@ -25,7 +25,7 @@ export default function AddCoupon() {
  let dataExpire=[year, month, day].join('-');
 
     try {
-      const { data } =await axios.post("http://localhost:5000/api/create-coupon", {
+      const { data } =await axios.post("/api/create-coupon", {
         coupon_code,
         type,
         discount_amount,

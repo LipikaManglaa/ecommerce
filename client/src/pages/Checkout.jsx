@@ -30,7 +30,7 @@ let[orderType,setOrderType]=useState("cash")
    
 
     if(orderType=="cash") {
-      axios.post(`http://localhost:5000/api/save-order/`,{
+      axios.post(`/api/save-order/`,{
         userId,
         orderAmount:cartTotal,
         couponCodeAmount,
@@ -66,7 +66,7 @@ navigate('/user-dashboard')
  
     userId=user.user.id;
   
-    axios.get(`http://localhost:5000/api/display-cart/${userId}`)
+    axios.get(`/api/display-cart/${userId}`)
     
     .then((res)=>res.data)
     .then((finalData)=>{
@@ -116,7 +116,7 @@ navigate('/user-dashboard')
    
     e.preventDefault();
     try{
-    const res=await axios.post(`http://localhost:5000/api/add-address/${userId}`,{
+    const res=await axios.post(`/api/add-address/${userId}`,{
       address,
       city,
       state,

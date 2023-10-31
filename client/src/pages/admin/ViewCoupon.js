@@ -10,7 +10,7 @@ export default function ViewCoupon() {
 
   let [coupon,setCoupon]=useState([])
   function viewCoupon(){
-    axios.get(`http://localhost:5000/api/get-coupon`)
+    axios.get(`/api/get-coupon`)
     .then((res)=>{
       console.log(res.data.coupon)
       setCoupon(res.data.coupon)
@@ -21,7 +21,7 @@ export default function ViewCoupon() {
   let handleDelete=async(pid)=>{
     try {
         const { data } = await axios.delete(
-          `http://localhost:5000/api/delete-coupon/${pid}`
+          `/api/delete-coupon/${pid}`
         );
         if (data.success) {
           toast.success(`coupon is deleted`);

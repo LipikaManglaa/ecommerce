@@ -13,7 +13,7 @@ export default function ViewProduct() {
   //getall products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/get-all-products");
+      const { data } = await axios.get("/api/get-all-products");
 
       console.log(data.product[0].image)
       setProducts(data.product);
@@ -30,7 +30,7 @@ export default function ViewProduct() {
 
     try {
       const { data } = await axios.delete(
-        `http://localhost:5000/api/delete-product/${pid}`
+        `/api/delete-product/${pid}`
       );
 
       if (data.success) {
@@ -100,7 +100,7 @@ export default function ViewProduct() {
                       {p.name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <img src={`http://localhost:5000/` + p.image} />
+                      <img src={`/` + p.image} />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {p.description}

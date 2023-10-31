@@ -27,7 +27,7 @@ export default function Home() {
   //for slider
   const getImage = () => {
 
-    axios.get("http://localhost:5000/api/slider-view-image")
+    axios.get("/api/slider-view-image")
       .then((res) => {
         setAllImage(res.data.sliderImage);
       })
@@ -61,7 +61,7 @@ export default function Home() {
               allImage.length > 0 ?
                 allImage.map((v, i) => {
                   return (
-                    <><img src={`http://localhost:5000/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
+                    <><img src={`/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
                   )
                 })
 
@@ -88,7 +88,7 @@ export default function Home() {
                             i % 2 == 0 ?
                               <>
                                 <div className='board-img' key={i}>
-                                  <img src={`http://localhost:5000/` + v.image} alt={v.name} />
+                                  <img src={`/` + v.image} alt={v.name} />
                                 </div>
                                 <div className='cat-para cat-color-2'>
                                   <div className='list-style'>
@@ -111,7 +111,7 @@ export default function Home() {
                                   <button class="wbtn"><Link to={`/category/` + v.slug}>More Products</Link></button>
                                 </div>
                                 <div className='board-img'>
-                                  <img src={`http://localhost:5000/` + v.image} alt={v.name} />
+                                  <img src={`/` + v.image} alt={v.name} />
                                 </div>
                               </>
                           }

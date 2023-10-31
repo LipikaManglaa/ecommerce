@@ -1,7 +1,7 @@
 import express from "express";
 import { directoryImport } from 'directory-import';
 import dotenv from "dotenv";
-import {connectDB} from "./config/db.js";
+import db from "./config/db.js";
 import  routes from './routes/index.js'
 import stripe from 'stripe'
 
@@ -15,7 +15,6 @@ import path from 'path'
 dotenv.config();
 
 //databse config
-connectDB();
 
 //rest object
 const app = express();

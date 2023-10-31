@@ -81,4 +81,25 @@ padding-left: 30px;
     font-size: 16px;
 }
 
-  
+@media only screen and (min-width:300px) and (max-width:576px){
+    .cart-list {
+        max-width: 100%;
+        padding: 30px 0px;
+    }
+    .cart-inner {
+       flex-direction: column;
+        padding: 10px;
+    }
+    .cart-items {
+        max-width: 100%;
+             padding: 10px;
+    }
+    .cart-items table td {
+               padding: 5px !important;
+              font-size: 11px;
+       
+    }
+    .con-shopping {
+              padding-left: 0px;
+    }
+}

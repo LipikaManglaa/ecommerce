@@ -126,3 +126,26 @@ margin-bottom: 30px;
     background-color: #fff;
     border: 1px solid #d4d5d9;
 }
+
+@media only screen and (min-width:300px) and (max-width:576px){
+    .cat-filter {
+             padding: 20px 15px;
+    }
+    .row-filter {
+    
+        flex-direction: column;
+    }
+
+    .list-data {
+               padding: 15px 0px;
+    }
+    .list-data-items {
+       padding-left: 0px;
+    }
+    .list-pro h4 {
+        text-align: left;
+    }
+    .product-right-lsit {
+flex-direction: column;
+    }
+}

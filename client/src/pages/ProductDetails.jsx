@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../layout/Layout'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios, { Axios } from 'axios'
 import './../styles/ProductDetail.css'
 import { useAuth } from '../context/auth'
@@ -12,6 +12,7 @@ export default function ProductDetails() {
    let[datadata,setData]=useState({})
    let [cart, setCart] = useState()
    let [auth, setAuth] = useAuth()
+   let navigate=useNavigate()
  
    let getproductList = async () => {
 
@@ -30,7 +31,7 @@ export default function ProductDetails() {
     if (auth.token === "") {
       toast.success("Please Login first! Then you can add your item into cart", { autoClose: 700 });
       setTimeout(() => {
-        //   navigate('/login')
+         navigate('/login')
       }, 1500)
     }
     else {
@@ -45,6 +46,7 @@ export default function ProductDetails() {
         }
       ).then((res) => {
         console.log(res)
+  
         setCart(res.data)
       })
 

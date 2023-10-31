@@ -6,6 +6,7 @@ import { faEnvelope, faLocation, faPhone } from '@fortawesome/free-solid-svg-ico
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import logoheader from './../images/logoheader.png'
 export default function Footer() {
 
   const [categories, setCategories] = useState([]);
@@ -31,7 +32,7 @@ export default function Footer() {
       <footer id="footer">
         <div className="footer-width">
           <figure>
-            <a href="index.html"><img src="images/logo.svg" alt="footer" title="footer" /></a>
+            <img src={logoheader} alt="footer" title="footer"  style={{width:'100px'}} />
           </figure>
           <div className="footer-content">
             <div className="footer-address">

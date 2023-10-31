@@ -140,7 +140,7 @@ useEffect(()=>{
     </div>
     
 
-  <div className='payment'><input type="radio" defaultValue="cheque" name="payment" /><p>Pay By paypal</p></div>
+  <div className='payment'><input type="radio" defaultValue="cheque" name="payment" /><p>Pay By Stripe</p></div>
 
   <input type="submit" name="submit" defaultValue="Place Order" className="redbutton wbtn" style={{width:'100%'}} />
 </div>

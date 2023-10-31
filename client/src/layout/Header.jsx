@@ -13,7 +13,7 @@ export default function Header() {
   
   const [auth, setAuth] = useAuth()
   const [headerData,setHeaderData]=useState([])
-
+let[active,setActive]=useState(false)
  
   const handleLogout = () => {
     setAuth({
@@ -26,10 +26,10 @@ export default function Header() {
     toast.success("Logout Successfully");
   };
 
-let [openMenu,setopenMenu]=useState(false)
+
   let dispalyMenu=()=>{
-    alert("dd")
-    setopenMenu(!openMenu)
+
+    setActive(!active)
   }
   const getallData =  () => {
  
@@ -43,6 +43,7 @@ let [openMenu,setopenMenu]=useState(false)
     })
       
     };
+  
 
 useEffect(()=>{
 getallData()
@@ -57,7 +58,7 @@ getallData()
     <img src={logoheader} style={{paddingBottom:'10px'}}/>
   </div>
 
-  <div className="menu">
+  <div  className={active ? "activemenumobile" : "menu"}>
     <ul>
       {
       
@@ -131,14 +132,17 @@ getallData()
       <h3><Link to={'/Wishlist'}>Wishlist</Link></h3>
     </div> */}
     <div className="profilemenu">
+
+    <Link to={'/cart'}>
       <FontAwesomeIcon icon={faBagShopping}/>
    
-      <h3><Link to={'/cart'}>Bag</Link></h3>
+      <h3>Bag</h3></Link>
     </div>
    
   </div>
   <div>
     <FontAwesomeIcon icon={faBars}  onClick={dispalyMenu} className='header-bar'/>
+    
  
   </div>
 </header>

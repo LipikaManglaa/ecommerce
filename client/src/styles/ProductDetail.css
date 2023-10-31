@@ -35,4 +35,31 @@
 .pr0-cat-lisr p{
     margin-top: 15px;
 }
+.list-product h1{
+    text-align: center;
+}
+.pr-image{
+    max-height: 400px;
+}
+.pr-image img{
+    height: 100%;
+}
 
+@media only screen and (min-width:300px) and (max-width:576px){
+    .list-product {
+        max-width: 100%;
+        padding: 30px 15px;
+    }
+
+    .list-product h1 {
+        font-size: 24px;
+        padding-bottom: 10px;
+    }
+    .list-cat {
+       flex-direction: column;
+        margin-top: 10px;
+    }
+    .pr-image{
+        margin-bottom: 15px;
+    }
+}

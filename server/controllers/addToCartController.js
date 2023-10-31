@@ -5,19 +5,18 @@ export const addtocartController = async(req, res)=>{
 
   try {
     let cart;
-    const { qty, productId, userId, name } = req.body
+    const { qty, productId, userId ,name} = req.body
     const oldCartData = await cartModel.find({
       productId,
       userId
-
     }).exec();
 
     const oldProductData = await productModel.findById(productId);
-console.log(oldProductData)
+
     let amount = oldProductData.price
     let image = oldProductData.image
 
-  // let name=oldProductData.name
+// let name=oldProductData.name
 
     if (oldCartData.length === 0) {
       cart = await new cartModel({
@@ -42,7 +41,7 @@ console.log(oldProductData)
     res.status(201).send({
       success: true,
       message: "new cart created",
-      oldCartData,
+
       cart,
     });
   } catch (error) {

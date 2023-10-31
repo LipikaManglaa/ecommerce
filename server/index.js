@@ -3,7 +3,7 @@ import { directoryImport } from 'directory-import';
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import  routes from './routes/index.js'
-
+import stripe from 'stripe'
 // import  controllers from './controllers/productController.js'
 import multer from "multer";
 const router = express.Router();

@@ -62,7 +62,7 @@ export default function Home() {
               allImage.length > 0 ?
                 allImage.map((v, i) => {
                   return (
-                    <><img src={`http://localhost:5000/` + v.image} style={{ height: '500px', width: "100%" }} /></>
+                    <><img src={`http://localhost:5000/` + v.image} style={{ height: '400px', width: "100%" }} /></>
                   )
                 })
 

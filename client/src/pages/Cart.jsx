@@ -101,7 +101,7 @@ toast.error(res.data.message,{autoClose:1000})
       <div className='cart-items'>
         <div className='cart-shop'>
           <h2>Shopping Cart</h2>
-          <h2>3 Items</h2>
+          <h2>Items{cartD.length}</h2>
         </div>
         <table>
           <thead>

@@ -8,8 +8,6 @@ import Home from './pages/Home';
 import SignUp from './pages/auth/SignUp';
 import Login from './pages/auth/Login';
 import AdminLogin from './pages/admin/AdminLogin';
-import Gallery from './pages/Gallery';
-
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AddProduct from './pages/admin/AddProduct';
 import ViewProduct from './pages/admin/ViewProduct';
@@ -79,10 +77,6 @@ let route=createBrowserRouter([
   {
     path:'/admin-login',
     element:<AdminLogin/>
-  },
-  {
-    path:'/galleryImages',
-    element:<Gallery/>
   },
   {
     path:'/admin-dashboard',

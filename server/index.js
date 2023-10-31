@@ -15,7 +15,7 @@ import path from 'path'
 dotenv.config();
 
 //databse config
-connectDB();
+// connectDB();
 
 //rest object
 const app = express();

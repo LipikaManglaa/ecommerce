@@ -14,7 +14,7 @@ export default function Home() {
   const getAllCategories = async () => {
 
     try {
-      const { data } = await axios.get("http://localhost:5000/api/get-admin-category");
+      const { data } = await axios.get(`/api/get-admin-category`);
     
       setCategories(data.categories);
 

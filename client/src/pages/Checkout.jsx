@@ -150,8 +150,7 @@ navigate('/user-dashboard')
 useEffect(()=>{
   getCartData()
  
-
-
+ 
 },[])
   return (
   <>

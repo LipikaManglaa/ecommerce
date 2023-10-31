@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import  routes from './routes/index.js'
 import stripe from 'stripe'
-// import  controllers from './controllers/productController.js'
+
 import multer from "multer";
 const router = express.Router();
 import cors from "cors";
@@ -26,7 +26,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(routes);
-// app.use(controllers)
+
 
 //PORT
 app.use(express.static('uploads'));

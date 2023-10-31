@@ -40,7 +40,6 @@ export default function CategoryFiler() {
 
   const getFilter=()=>{
 
-    console.log(rangevalue)
     if(subcartgoryId.length>0){
       axios.post("http://localhost:5000/api/productFilter",{
        
@@ -131,18 +130,19 @@ export default function CategoryFiler() {
 
 
   //get product by accending order
-//   const getProductByAccending = () => {
-// alert("Ddd")
-//     axios.get("http://localhost:5000/api/productAccendingOrder")
-//     .then((res)=>{
-//       console.log(res)
-//       setProductData(res.data)
-//     })
-//   }
+  const getProductByAccending = () => {
+
+    axios.get("http://localhost:5000/api/productAccendingOrder")
+    .then((res)=>{
+      console.log(res)
+      setProductData(res.data)
+    })
+  }
+
 
 
   let handleCart = (productId) => {
-
+   
     if (auth.token === "") {
       toast.success("Please Login first! Then you can add your item into cart", { autoClose: 700 });
       setTimeout(() => {
@@ -162,6 +162,7 @@ export default function CategoryFiler() {
       ).then((res) => {
       
         setCart(res.data)
+        setAuth({...auth,cartItem:res.data.cartItem})
       })
 
 
@@ -261,7 +262,7 @@ useEffect(()=>{
            
             <div className="product-right">
             <div className='list-data list-pro'><h4>
-{/* <div onClick={getProductByAccending}>order</div> */}
+ <div onClick={getProductByAccending}>order</div> 
               <select className='cat-select'>
                 <option >Sort By: Recommend</option>
                 <option>Accending order</option>
@@ -282,7 +283,7 @@ useEffect(()=>{
                       return (
 
 
-                          <div className='product-list-items'>
+                          <div className='product-list-items' key={i}>
                            <Link to={'/product-details/' + value.slug}>
                             <img src={`http://localhost:5000/` + value.image} />   </Link>
                           

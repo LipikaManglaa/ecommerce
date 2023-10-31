@@ -35,6 +35,8 @@ export default function Cart() {
 
       setCartD(finalData.cartData)
 
+      setAuth({...auth,cartItem:finalData.cartData.length})
+
       let total=0;
       finalData.cartData.forEach((v)=>{
         total=total+(v.qty*v.amount)

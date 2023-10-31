@@ -20,6 +20,7 @@ let[active,setActive]=useState(false)
       ...auth,
       user: null,
       token: "",
+      cartItem:0,
     });
     localStorage.removeItem("auth");
     localStorage.clear();
@@ -68,7 +69,7 @@ getallData()
     
   
     return(
-      <li className="showsubitems">
+      <li className="showsubitems" key={i}>
         
               
         <Link to={`/category/`+v.category.slug}>{v.category.name}</Link>
@@ -136,7 +137,7 @@ getallData()
     <Link to={'/cart'}>
       <FontAwesomeIcon icon={faBagShopping}/>
    
-      <h3>Bag</h3></Link>
+      <h3>Bag{auth.cartItem}</h3></Link>
     </div>
    
   </div>
@@ -162,7 +163,7 @@ function SubCategory({subcatgoryList}){
         subcatgoryList.length>0 ?
 subcatgoryList.map((value,index)=>{
   return(
-    <div className="sub-list-item " >
+    <div className="sub-list-item " key={index} >
     <div className="list-item">
     
       <h3>{value.subcategory.name}</h3>
@@ -193,7 +194,7 @@ function ProductMenu({productList}){
 productList.length>0 ?
 productList.map((v,i)=>{
   return(
-    <li><Link to={'/'}>{v.name}</Link></li>
+    <li key={i}> <Link to={'/'}>{v.name}</Link></li>
   )
 })
 

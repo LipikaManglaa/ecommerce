@@ -22,18 +22,19 @@ export default function Login() {
       });
     
      
-      console.log(res.data.user.id)
+      
       if (res.data.sucess) {
         toast.success(res.data.message, { autoClose: 1000 });
         setAuth({
          
           user: res.data.user.name,
           token: res.data.token,
-          id:res.data.user.id
+          id:res.data.user.id,
+          cartItem:res.data.cartItem,
         });
          localStorage.setItem("auth", JSON.stringify(res.data));
         setTimeout(() => {
-    navigate('/')
+navigate('/')
         }, 2000)
       }
      }

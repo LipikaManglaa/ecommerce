@@ -4,15 +4,25 @@ import cartModel from "../models/cartModel.js";
 export const orderGetController=async(req,res)=>{
 
     try {
-const {userId,productId, productDetails, order_date} = req.body
-        const cart = await cartModel.findAll({userId: req.params.id})
-        console.log(cart)
+const {userId,orderAmount,shippingAddress,discount_amount, order_type} = req.body
+        const cart = await cartModel.find({userId:userId})
+        
         const order = await new orderModel({
             userId,
-            productId,
-            productDetails:cart,
-            order_date
-          }).save();
+            shippingAddress:JSON.stringify(shippingAddress),
+            orderAmount,
+            discount_amount,
+            order_type,
+            productDetails:JSON.stringify(cart),
+            }).save();
+
+            for(var v of cart){
+              const cartRemove = await cartModel.findOneAndRemove({userId:userId})
+        
+            }
+          
+
+
              
           res.status(200).send({
             success: true,

@@ -4,6 +4,7 @@ import { useAuth } from '../context/auth'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import './../styles/Checkout.css'
+import { useNavigate } from 'react-router-dom'
 export default function Checkout() {
   let[address,setAddress]=useState("")
   let[city,setCity]=useState("")
@@ -11,17 +12,100 @@ export default function Checkout() {
   let[pincode,setPincode]=useState("")
   let[country,setCountry]=useState("")
 
-let[order,setOrder]=useState([])
+
+
+  let[auth,setAuth]=useAuth()
+  let[cartD,setCartD]=useState([])
+  let [cartTotal,setCartTotal]=useState(0)
+  let[couponCodeAmount,setCouponCodeAmount]=useState(0)
+  let[discoutAmount ,setDiscountAmount]=useState(0)
+  let[discountPercentage,setDiscountPercentage]=useState(0)
+
+let navigate=useNavigate()
+let[orderType,setOrderType]=useState("cash")
   //order display
   let user=JSON.parse(localStorage.getItem("auth"))
   let userId=user.user.id;
   let handleOrder=async(e)=>{
    
-    axios.get(`http://localhost:5000/api/order/${userId}`)
-    .then((res)=>{
-     setOrder(res.data)
+
+    if(orderType=="cash") {
+      axios.post(`http://localhost:5000/api/save-order/`,{
+        userId,
+        orderAmount:cartTotal,
+        couponCodeAmount,
+        discoutAmount,
+        order_type:orderType,
+        shippingAddress:{
+          address,
+          city,
+          state,
+          pincode,
+          country,
+        }
+      })
+      .then((res)=>{
+     
+      })
+    }
+    else{ 
+
+    }
+
+toast.success("your order has been done succesfuuly!",{autoClose:1000})
+setAuth({...auth,cartItem:0})
+localStorage.removeItem('coupon')
+
+navigate('/user-dashboard')
+  }
+
+
+
+  const getCartData =  () => {
+    let user=JSON.parse(localStorage.getItem("auth"))
+ 
+    userId=user.user.id;
+  
+    axios.get(`http://localhost:5000/api/display-cart/${userId}`)
+    
+    .then((res)=>res.data)
+    .then((finalData)=>{
+
+      setCartD(finalData.cartData)
+
+      setAuth({...auth,cartItem:finalData.cartData.length})
+
+      let total=0;
+      finalData.cartData.forEach((v)=>{
+        total=total+(v.qty*v.amount)
+      })
+         setCartTotal(total)
+        
+
+        let oldCoupon=JSON.parse(localStorage.getItem("coupon")) ?? []
+    
+        if(oldCoupon.length==1){
+          let totalPer=Number(oldCoupon[0].discount_amount);
+          let discount_amount=total*totalPer/100
+     
+          setDiscountPercentage(totalPer)
+          setDiscountAmount(discount_amount)
+           setCouponCodeAmount(total-discount_amount);
+        }
+        else{
+          setCouponCodeAmount(total)
+        }
+    
     })
   }
+ 
+
+  let paymentMethod=(e)=>{
+    setOrderType(e.target.value)
+  }
+
+
+
 
 
 
@@ -62,11 +146,13 @@ let[order,setOrder]=useState([])
     }
   }
 
+
 useEffect(()=>{
-  handleOrder()
-},[userId])
+  getCartData()
+ 
 
 
+},[])
   return (
   <>
 <div className='checkout' >
@@ -123,26 +209,40 @@ useEffect(()=>{
   <h3 className="topborder"><span>Your Order</span></h3>
   <div className="row justify-between">
     <h4 className="inline">Product</h4>
-    <h4 className="inline " style={{textAlign:'right'}}>Total</h4>
+   
   </div>
   <div>
-    <p className="prod-description inline">Nice Dress</p><div className="qty inline"><span className="smalltxt">x</span> 1</div>
+    {
+      cartD.length>0 ? 
+cartD.map((v,i)=>{
+  return(
+    <>
+    <p className="prod-description inline">{v.name}</p>  |   <div className="qty inline"> {v.amount}  <span className="smalltxt">x</span> {v.qty} ={v.qty*v.amount}</div>
     <p />
+    </>
+  )
+})
+
+      : " No data into cart!"
+    }
+    
   </div>
-  <div><h5>Cart Subtotal</h5></div>
+  <div><h5>Cart Subtotal {cartTotal}</h5></div>
+  <div><h5>Discount Amount {discoutAmount}</h5></div>
+
   
-  <div><h5>Order Total</h5></div>
+  <div><h5>Order Total {couponCodeAmount}</h5></div>
   <div className='payment'>
     <h3 className="topborder"><span>Payment Method</span></h3>
     </div>
     <div className='payment'>
-    <input type="radio" defaultValue="banktransfer" name="payment" defaultChecked /><p>Cash payment</p>
+    <input type="radio" defaultValue="cash" onChange={paymentMethod} name="payment" defaultChecked /><p>Cash payment</p>
     </div>
     
 
-  <div className='payment'><input type="radio" defaultValue="cheque" name="payment" /><p>Pay By Stripe</p></div>
+  <div className='payment'><input type="radio" defaultValue="stripe" name="payment" onChange={paymentMethod}/><p>Pay By Stripe</p></div>
 
-  <input type="submit" name="submit" defaultValue="Place Order" className="redbutton wbtn" style={{width:'100%'}} />
+  <input type="submit" name="submit"  onClick={handleOrder} defaultValue="Place Order" className="redbutton wbtn" style={{width:'100%'}} />
 </div>
 
       

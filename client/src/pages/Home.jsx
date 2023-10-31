@@ -15,7 +15,7 @@ export default function Home() {
 
     try {
       const { data } = await axios.get("http://localhost:5000/api/get-admin-category");
-      console.log(data.categories)
+    
       setCategories(data.categories);
 
     } catch (error) {
@@ -29,7 +29,6 @@ export default function Home() {
 
     axios.get("http://localhost:5000/api/slider-view-image")
       .then((res) => {
-        console.log(res.data.sliderImage)
         setAllImage(res.data.sliderImage);
       })
 
@@ -62,7 +61,7 @@ export default function Home() {
               allImage.length > 0 ?
                 allImage.map((v, i) => {
                   return (
-                    <><img src={`http://localhost:5000/` + v.image} style={{ height: '400px', width: "100%" }} /></>
+                    <><img src={`http://localhost:5000/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
                   )
                 })
 
@@ -80,7 +79,7 @@ export default function Home() {
                 {
                   categories.length > 0 ?
                     categories.map((v, i) => {
-                      console.log(v)
+                   
                       return (
 
 
@@ -88,7 +87,7 @@ export default function Home() {
                           {
                             i % 2 == 0 ?
                               <>
-                                <div className='board-img'>
+                                <div className='board-img' key={i}>
                                   <img src={`http://localhost:5000/` + v.image} alt={v.name} />
                                 </div>
                                 <div className='cat-para cat-color-2'>

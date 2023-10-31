@@ -11,9 +11,9 @@ const router = express.Router();
 
 
 
-router.post("/get-order/:id", orderGetController);
+router.post("/save-order", orderGetController);
 
 
-router.get("/order/:id", orderController);
+router.get("/display-order/:id", orderController);
 
 export default router;

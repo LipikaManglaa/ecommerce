@@ -6,7 +6,8 @@ export default function AuthProvider({children}){
   const [auth, setAuth] = useState({
     user: null,
     token: "",
-    id:""
+    id:"",
+    cartItem:0
   });
 
   //default axios
@@ -20,7 +21,10 @@ export default function AuthProvider({children}){
         ...auth,
         user: parseData.user.name,
         token: parseData.token,
-        id:parseData.id
+        id:parseData.id,
+        cartItem:parseData.cartItem
+      
+
       });
     }
    

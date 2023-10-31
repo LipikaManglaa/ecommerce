@@ -7,8 +7,15 @@ const orderSchema = new mongoose.Schema(
         ref: "user",
         required: true,
     },
+    orderAmount:{
+        type:Number,
+    },
+    shippingAddress:{
+        type:String,
+    },
+
     productDetails: {
-        type:Object
+        type:String,
     // {
     //     products:{
     //         type:Array,
@@ -20,11 +27,14 @@ const orderSchema = new mongoose.Schema(
     //     }
         
     },
-    productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
-    },
+  
+    discount_amount: {
+        type: String,
+        
+      },
+      order_type:{
+        type:String,
+      },
     
     order_date:{
         type: Date, 

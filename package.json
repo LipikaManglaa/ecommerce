@@ -7,6 +7,10 @@
   "description": "",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "npm": ">=8.0.0 <9.0.0",
+    "node": ">=16.0.0 <17.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
@@ -14,9 +18,8 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build"
   },
-  "engines" : { 
-       "node" : ">=16.0.0 <17.0.0"
-  },
+ 
+ 
   "keywords": [],
   "author": "",
   "license": "ISC"

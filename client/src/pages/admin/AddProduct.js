@@ -15,13 +15,14 @@ export default function AddProduct() {
     const [productId, setProductId] = useState("");
 
   const submitImage = async (e) => {
+    const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("image", image);
     try {
       const result = await axios.post(
-          "/api/upload-image",
+          `${baseURL}/api/upload-image`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

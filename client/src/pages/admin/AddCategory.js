@@ -8,6 +8,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
   
 export default function AddCategory() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
     const [name, setName] = useState("");
     const [description, setDescription]=useState("");
     const [image, setImage]=useState("");
@@ -20,7 +21,7 @@ export default function AddCategory() {
       
         formData.append("image", image);
         try {
-          const { data } = await axios.post("/api/create-category", 
+          const { data } = await axios.post(`${baseURL}/api/create-category`, 
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export default function Cart() {  
+
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   let[auth,setAuth]=useAuth()
   let[cartD,setCartD]=useState([])
   let [cartTotal,setCartTotal]=useState(0)
@@ -28,7 +30,7 @@ export default function Cart() {
  
     userId=user.user.id;
   
-    axios.get(`/api/display-cart/${userId}`)
+    axios.get(`${baseURL}/api/display-cart/${userId}`)
     
     .then((res)=>res.data)
     .then((finalData)=>{
@@ -68,7 +70,7 @@ export default function Cart() {
     let checkCode=e.target.coupon_code.value
      let totalAmount=cartTotal
 
-  axios.post(`/api/check-coupon`,{
+  axios.post(`${baseURL}/api/check-coupon`,{
     checkCode
   })
   .then((res)=>{
@@ -182,13 +184,13 @@ let Cartrow=({v,i,getCartData})=>{
 
   let [qty,setQty]=useState(v.qty);
   //qty
-  let handleValue=(e)=>{
+  let handleValue=async(e)=>{
    
 
     setQty(e.target.value)
     let updateId=v._id;
     let qtyNew=e.target.value;
-axios.post(`/api/cart-update/${updateId}`,{
+   await axios.post(`http://localhost:5000/api/cart-update/${updateId}`,{
   qty:qtyNew
 })
 .then((res)=>{
@@ -207,7 +209,7 @@ getCartData();
 
     try {
       const { data } = await axios.delete(
-        `/api/cart-delete/${delId}`
+        `http://localhost:5000/api/cart-delete/${delId}`
       );
      
       if (data.success) {
@@ -225,7 +227,7 @@ return(
 
   <tr key={i}>
   <td>{i+1}</td> 
-  <td> <img className="img-cart" src={`/`+v.image} alt="" style={{width:'100px'}}/></td>
+  <td> <img className="img-cart" src={`http://localhost:5000/`+v.image} alt="" style={{width:'100px'}}/></td>
   <td>{v.name}</td>
   <td>{v.amount}</td>
 <td><input type='number'className='input-qty' min={1} max={5} value={qty}   onChange={handleValue}/></td>

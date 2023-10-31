@@ -7,12 +7,12 @@ import { toast } from 'react-toastify'
 
 
 export default function ViewCoupon() {
-
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   let [coupon,setCoupon]=useState([])
   function viewCoupon(){
-    axios.get(`/api/get-coupon`)
+    axios.get(`${baseURL}/api/get-coupon`)
     .then((res)=>{
-      console.log(res.data.coupon)
+     
       setCoupon(res.data.coupon)
     })
   }
@@ -21,7 +21,7 @@ export default function ViewCoupon() {
   let handleDelete=async(pid)=>{
     try {
         const { data } = await axios.delete(
-          `/api/delete-coupon/${pid}`
+          `${baseURL}/api/delete-coupon/${pid}`
         );
         if (data.success) {
           toast.success(`coupon is deleted`);

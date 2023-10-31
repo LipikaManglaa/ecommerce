@@ -10,7 +10,7 @@ import { useState } from 'react'
 import axios from 'axios';
 
   export default function UserProfile() {
-   
+    const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
     let userData=JSON.parse(localStorage.getItem("auth"))  ?? []
 
 if(userData.length === 0){
@@ -43,7 +43,7 @@ if(userData.length === 0){
      
         let userId=userData.user._id
      
-      const { data } = await axios.put(`/api/profile/${userId}`, {
+      const { data } = await axios.put(`${baseURL}/api/profile/${userId}`, {
         name,
         email,
         password,

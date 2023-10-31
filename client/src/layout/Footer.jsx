@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import logoheader from './../images/logoheader.png'
 export default function Footer() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
 
   const [categories, setCategories] = useState([]);
   const getAllCategories = async () => {
 
     try {
-      const { data } = await axios.get("/api/get-admin-category");
+      const { data } = await axios.get(`${baseURL}/api/get-admin-category`);
     
       setCategories(data.categories);
 

@@ -7,14 +7,15 @@ import { toast } from 'react-toastify';
 import './../styles/Home.css'
 
 export default function Home() {
-
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
+  console.log(baseURL)
   const [allImage, setAllImage] = useState([]);
   const [categories, setCategories] = useState([]);
   
   const getAllCategories = async () => {
 
     try {
-      const { data } = await axios.get(`/api/get-admin-category`);
+      const { data } = await axios.get(`${baseURL}/api/get-admin-category`);
     
       setCategories(data.categories);
 
@@ -27,7 +28,7 @@ export default function Home() {
   //for slider
   const getImage = () => {
 
-    axios.get("/api/slider-view-image")
+    axios.get(`${baseURL}/api/slider-view-image`)
       .then((res) => {
         setAllImage(res.data.sliderImage);
       })
@@ -61,7 +62,7 @@ export default function Home() {
               allImage.length > 0 ?
                 allImage.map((v, i) => {
                   return (
-                    <><img src={`/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
+                    <><img src={`${baseURL}/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
                   )
                 })
 
@@ -88,7 +89,7 @@ export default function Home() {
                             i % 2 == 0 ?
                               <>
                                 <div className='board-img' key={i}>
-                                  <img src={`/` + v.image} alt={v.name} />
+                                  <img src={`${baseURL}/` + v.image} alt={v.name} />
                                 </div>
                                 <div className='cat-para cat-color-2'>
                                   <div className='list-style'>
@@ -111,7 +112,7 @@ export default function Home() {
                                   <button class="wbtn"><Link to={`/category/` + v.slug}>More Products</Link></button>
                                 </div>
                                 <div className='board-img'>
-                                  <img src={`/` + v.image} alt={v.name} />
+                                  <img src={`${baseURL}/` + v.image} alt={v.name} />
                                 </div>
                               </>
                           }

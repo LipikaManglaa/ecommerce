@@ -7,15 +7,17 @@ import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDeleteLeft, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 export default function ViewProduct() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   const [products, setProducts] = useState([]);
   const [imageData, setImagePath] = useState('');
 
   //getall products
   const getAllProducts = async () => {
+    const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
     try {
-      const { data } = await axios.get("/api/get-all-products");
+      const { data } = await axios.get(`${baseURL}/api/get-all-products`);
 
-      console.log(data.product[0].image)
+     
       setProducts(data.product);
 
 
@@ -30,7 +32,7 @@ export default function ViewProduct() {
 
     try {
       const { data } = await axios.delete(
-        `/api/delete-product/${pid}`
+        `${baseURL}/api/delete-product/${pid}`
       );
 
       if (data.success) {
@@ -100,7 +102,7 @@ export default function ViewProduct() {
                       {p.name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <img src={`/` + p.image} />
+                      <img src={`${baseURL}/` + p.image} />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {p.description}

@@ -4,9 +4,10 @@ import AdminDashboard from './AdminDashboard'
 import Sidebar from './common/Sidebar'
 
 export default function ViewUser() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
 let [user,setUSer]=useState([{}])
   function viewUSer(){
-    axios.get(`/api/display-user`)
+    axios.get(`${baseURL}/api/display-user`)
     .then((res)=>{
       setUSer(res.data.users)
     })

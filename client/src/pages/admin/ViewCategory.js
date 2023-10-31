@@ -6,12 +6,13 @@ import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 export default function ViewCategory() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   const [categories, setCategories] = useState([]);
 
   //getall products
   const getAllCategories = async () => {
     try {
-      const { data } = await axios.get("/api/get-admin-category");
+      const { data } = await axios.get(`${baseURL}/api/get-admin-category`);
 
       setCategories(data.categories);
 
@@ -27,7 +28,7 @@ export default function ViewCategory() {
   let handleDelete = async (pid) => {
     try {
       const { data } = await axios.delete(
-        `/api/delete-category/${pid}`
+        `${baseURL}/api/delete-category/${pid}`
       );
       if (data.success) {
         toast.success(`category is deleted`);
@@ -98,7 +99,7 @@ export default function ViewCategory() {
                         </td>
                         <td className=" px-6 py-4 whitespace-nowrap" >
 
-                          <img src={`/` + p.image} />
+                          <img src={`${baseURL}/` + p.image} />
                         </td>
 
 

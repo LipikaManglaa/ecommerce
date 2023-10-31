@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useAuth } from '../../context/auth'
 // import { useAuth } from '../../context/auth'
 export default function Login() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
  let [auth,setAuth]=useAuth()
@@ -16,7 +17,7 @@ export default function Login() {
   e.preventDefault()
  
     try {
-      const res = await axios.post(`/api/login`, {
+      const res = await axios.post(`${baseURL}/api/login`, {
         email,
         password,
       });

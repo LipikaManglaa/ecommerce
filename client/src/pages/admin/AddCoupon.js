@@ -4,6 +4,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 export default function AddCoupon() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   let [coupon_code,setCouponCode]=useState("")
   let [type,setType]=useState("")
   let [discount_amount,setDiscountAmount]=useState("")
@@ -25,7 +26,7 @@ export default function AddCoupon() {
  let dataExpire=[year, month, day].join('-');
 
     try {
-      const { data } =await axios.post("/api/create-coupon", {
+      const { data } =await axios.post(`${baseURL}/api/create-coupon`, {
         coupon_code,
         type,
         discount_amount,

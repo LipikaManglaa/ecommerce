@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function SignUp() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
 let navigate=useNavigate()
     let[name,setName]=useState("")
     let[email,setEmail]=useState("")
@@ -15,7 +16,7 @@ let navigate=useNavigate()
     let handleSubmit= async (e) =>{
       e.preventDefault();
       try{
-      const res=await axios.post(`/api/register`,{
+      const res=await axios.post(`${baseURL}/api/register`,{
           name,email,password,phone
         })
        

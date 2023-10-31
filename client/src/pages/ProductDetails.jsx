@@ -7,6 +7,7 @@ import { useAuth } from '../context/auth'
 import { toast } from 'react-toastify'
 
 export default function ProductDetails() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   let data=useParams()
   
    let[datadata,setData]=useState({})
@@ -17,7 +18,7 @@ export default function ProductDetails() {
    let getproductList = async () => {
 
    
-    axios.get(`/api/single-product/${data.slug}`)
+    axios.get(`${baseURL}/api/single-product/${data.slug}`)
     .then((res)=>{
       setData(res.data.product)
     
@@ -38,7 +39,7 @@ export default function ProductDetails() {
       let user = JSON.parse(localStorage.getItem("auth"))
       let userId = user.user.id;
       let qty = 1;
-      axios.post(`/api/cart`,
+      axios.post(`${baseURL}/api/cart`,
         {
           userId,
           qty,

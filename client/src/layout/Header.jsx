@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 export default function Header() {
   
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   const [auth, setAuth] = useAuth()
   const [headerData,setHeaderData]=useState([])
 let[active,setActive]=useState(false)
@@ -34,10 +35,10 @@ let[active,setActive]=useState(false)
   }
   const getallData =  () => {
  
-      axios.get("/api/get-category")
+      axios.get(`${baseURL}/api/get-category`)
     .then((res)=>res.data)
     .then((finalData)=>{
-     
+     console.log(finalData)
       setHeaderData(finalData.finalresult)
 
    

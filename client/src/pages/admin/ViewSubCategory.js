@@ -7,12 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function ViewSubCategory() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   const [categories, setCategories] = useState([]);
 
   //getall products
   const getAllCategories = async () => {
     try {
-      const { data } = await axios.get("/api/get-cat-subcategory");
+      const { data } = await axios.get(`${baseURL}/api/get-cat-subcategory`);
       console.log(data.data.name)
     setCategories(data.data);
     
@@ -29,7 +30,7 @@ export default function ViewSubCategory() {
   let handleDelete=async(pid)=>{
     try {
         const { data } = await axios.delete(
-          `/api/delete-subcategory/${pid}`
+          `${baseURL}/api/delete-subcategory/${pid}`
         );
         if (data.success) {
           toast.success(`subcategory is deleted`);
@@ -85,7 +86,7 @@ return (
              {
               categories !== "undefined" ? 
                categories.map((p,i)=>{
-                console.log(p.categoryId.name)
+             
                 return(
 
                 
@@ -102,7 +103,7 @@ return (
                   </td>
                  <td className=" px-6 py-4 whitespace-nowrap" >
                    
-                  <img src={`/`+p.image}/>
+                  <img src={`${baseURL}/`+p.image}/>
                    </td>
                    <td className=" px-6 py-4 whitespace-nowrap" >
                    

@@ -10,6 +10,7 @@ import { useCart } from '../context/cart'
 import { toast } from 'react-toastify'
 import { useAuth } from '../context/auth'
 export default function CategoryFiler() {
+  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
   let data = useParams()
   let navigate = useNavigate()
   let [catProduct, setCatProducts] = useState()
@@ -41,7 +42,7 @@ export default function CategoryFiler() {
   const getFilter=()=>{
 
     if(subcartgoryId.length>0){
-      axios.post("/api/productFilter",{
+      axios.post(`${baseURL}/api/productFilter`,{
        
           subCat:subcartgoryId,
         
@@ -82,7 +83,7 @@ export default function CategoryFiler() {
   }
   const getSubCategoryProduct = () => {
 
-   axios.get("/api/getproductsubcategory", {
+   axios.get(`${baseURL}/api/getproductsubcategory`, {
       params: {
         slug: data.slug
       }
@@ -132,7 +133,7 @@ export default function CategoryFiler() {
   //get product by accending order
   const getProductByAccending = () => {
 
-    axios.get("/api/productAccendingOrder")
+    axios.get(`${baseURL}/api/productAccendingOrder`)
     .then((res)=>{
       console.log(res)
       setProductData(res.data)
@@ -153,7 +154,7 @@ export default function CategoryFiler() {
       let user = JSON.parse(localStorage.getItem("auth"))
       let userId = user.user.id;
       let qty = 1;
-      axios.post(`/api/cart`,
+      axios.post(`${baseURL}/api/cart`,
         {
           userId,
           qty,
@@ -285,7 +286,7 @@ useEffect(()=>{
 
                           <div className='product-list-items' key={i}>
                            <Link to={'/product-details/' + value.slug}>
-                            <img src={`/` + value.image} />   </Link>
+                            <img src={`${baseURL}/` + value.image} />   </Link>
                           
                           <div className="product-cat">
                             <span className="">{value.name}</span>

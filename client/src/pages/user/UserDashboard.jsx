@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser } from '@fortawesome/free-solid-svg-icons';
   export default function UserDashboard() {
-   
+    const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
     let userData=JSON.parse(localStorage.getItem("auth"))  ?? []
 console.log(userData)
 if(userData.length === 0){

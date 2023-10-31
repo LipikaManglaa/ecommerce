@@ -1,6 +1,8 @@
-import shippingModel from "../models/shippingModel.js";
+const shippingModel =require("../models/shippingModel")
 
-export const createAddressController =async(req,res)=>{
+
+module.exports={
+ async createAddressController(req,res){
     const userId=req.params.id
     try{
     const{address,city,state,country,pincode ,userId} = req.body
@@ -41,4 +43,5 @@ export const createAddressController =async(req,res)=>{
       });
     }
 
+},
 }

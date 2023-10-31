@@ -1,9 +1,11 @@
-import subCategoryModel from "../models/subCategoryModel.js";
-import slugify from "slugify";
-import categoryModel from "../models/categoryModel.js";
-import productModel from "../models/productModel.js";
+const subCategoryModel =require("../models/subCategoryModel");
+const slugify =require('slugify');
+const categoryModel =require("../models/categoryModel");
+const productModel =require("../models/productModel")
 
-export const createSubCategoryController = async (req, res) => {
+module.exports={
+  
+  async  createSubCategoryController (req, res)  {
   const imageName = req.file.filename;
     try {
       const { name ,description,categoryId} = req.body;
@@ -38,11 +40,11 @@ export const createSubCategoryController = async (req, res) => {
         message: "Errro in sub Category",
       });
     }
-  };
+  },
   
 
   //update Sub category
-export const updateSubCategoryController = async (req, res) => {
+  async updateSubCategoryController (req, res)  {
     try {
       const { name,description,categoryId } = req.body;
       const { id } = req.params;
@@ -64,10 +66,10 @@ export const updateSubCategoryController = async (req, res) => {
         message: "Error while updating category",
       });
     }
-  };
+  },
 
   // get all cat
-export const subCategoryControlller = async (req, res) => {
+ async subCategoryControlller (req, res)  {
     try {
 
     const subcategory = await subCategoryModel.find({})
@@ -86,10 +88,10 @@ export const subCategoryControlller = async (req, res) => {
         message: "Error while getting all sub categories",
       });
     }
-  };
+  },
 
   // single category
-export const singleSubCategoryController = async (req, res) => {
+  async singleSubCategoryController (req, res)  {
     try {
       const subcategory = await subCategoryModel.findOne({ slug: req.params.slug });
       res.status(200).send({
@@ -105,11 +107,11 @@ export const singleSubCategoryController = async (req, res) => {
         message: "Error While getting Single sub Category",
       });
     }
-  };
+  },
 
 
   //delete category
-export const deleteSubCategoryController = async (req, res) => {
+  async deleteSubCategoryController (req, res)  {
     try {
       const { id } = req.params;
       await subCategoryModel.findByIdAndDelete(id);
@@ -125,11 +127,11 @@ export const deleteSubCategoryController = async (req, res) => {
         error,
       });
     }
-  };
+  },
 
 
     // get all cat by slug
-export const subslugCategoryControlller = async (req, res) => {
+ async subslugCategoryControlller(req, res)  {
 
 
   try {
@@ -160,10 +162,9 @@ export const subslugCategoryControlller = async (req, res) => {
       message: "Error while getting all sub categories",
     });
   }
-};
+},
 
-
-export const productSubCategoryControlller=async(req,res)=>{
+async  productSubCategoryControlller(req,res){
 
   try{
     
@@ -214,11 +215,11 @@ export const productSubCategoryControlller=async(req,res)=>{
     });
   }
 
-}
+},
 
 
   //filter data
-  export const produuctFilterController=async(req,res)=>{
+async  produuctFilterController(req,res){
     try{
      const finalresult = [];
    
@@ -265,10 +266,10 @@ export const productSubCategoryControlller=async(req,res)=>{
         message: "Error while getting all filter products",
       });
     }
-      }
+      },
 
 //acees data from catgory to subcategory
-export const catSubCatgeoryController=async(req,res)=>{
+async catSubCatgeoryController(req,res){
   try {
    
     const data= await subCategoryModel.find({}).populate({path:'categoryId',model:'Category'})
@@ -288,4 +289,5 @@ export const catSubCatgeoryController=async(req,res)=>{
        message: "Error while getting all sub categories",
      });
    }
+},
 }

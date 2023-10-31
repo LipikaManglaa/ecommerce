@@ -1,17 +1,17 @@
-// const router = require('express').Router();
-// const apiRoutes = require('./api');
+const router = require('express').Router();
+const apiRoutes = require('./api');
 
-// module.exports = router;
 
-import express from "express";
 
-const router = express.Router();
+// import express from "express";
 
-import apiRoutes from "./api/index.js";
+// const router = express.Router();
+
+// import apiRoutes from "./api/index.js";
 
 router.use('/api', apiRoutes);
 
-
+module.exports = router;
 //frontend admin login
 
-export default router
+// export default router

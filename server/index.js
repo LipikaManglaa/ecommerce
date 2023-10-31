@@ -1,23 +1,32 @@
 
 
-import express from "express";
-import { directoryImport } from 'directory-import';
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import  routes from './routes/index.js'
-import stripe from 'stripe'
+const express = require('express');
+const path = require('path');
+// const routes = require('./routes/index.js');
+const cors=require('cors')
+const mongoose=require('mongoose')
+const multer=require('multer')
+const db = require('./config/db');
+const routes = require('./routes');
+const dotenv=require('dotenv')
+// import express from "express";
+// import { directoryImport } from 'directory-import';
+// import dotenv from "dotenv";
+// import connectDB from "./config/db.js";
+// import  routes from './routes/index.js'
+// import stripe from 'stripe'
 
-import multer from "multer";
-const router = express.Router();
-import cors from "cors";
-import mongoose from "mongoose";
-import path from 'path'
+// import multer from "multer";
+// const router = express.Router();
+// import cors from "cors";
+// import mongoose from "mongoose";
+// import path from 'path'
 
 //configure env
 dotenv.config();
 
 //databse config
-connectDB();
+// connectDB();
 
 //rest object
 const app = express();

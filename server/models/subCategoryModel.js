@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const { Schema, model } = require('mongoose');
 
-const subCategorySchema = new mongoose.Schema(
+const subCategorySchema = new Schema(
   {
     name: {
       type: String,
@@ -14,7 +14,7 @@ const subCategorySchema = new mongoose.Schema(
       type: String,
         },
     categoryId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Category",
       required:true,
      },
@@ -34,4 +34,6 @@ const subCategorySchema = new mongoose.Schema(
   
   //, { strictPopulate: false }
 
- export default mongoose.model("subCategory", subCategorySchema);
+//  export default mongoose.model("subCategory", subCategorySchema);
+const subCategory=model("subCategory", subCategorySchema);
+module.exports = subCategory;

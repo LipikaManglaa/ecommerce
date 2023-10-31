@@ -1,6 +1,6 @@
-import express from "express";
+const express = require('express');
 
-import {
+const {
  createProductController,
   productController,
   singleProductController,
@@ -10,7 +10,7 @@ import {
 
 
   
-} from "./../../controllers/productController.js";
+} =require("./../../controllers/productController.js");
 
 const router = express.Router();
 
@@ -43,5 +43,4 @@ router.get('/productCatSub', productCatSubCatgeoryController)
 
 router.get('/productAccendingOrder', produuctAccesndinOrderController)
 
-
-export default router;
+module.exports = router;

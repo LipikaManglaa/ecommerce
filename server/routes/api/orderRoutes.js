@@ -1,8 +1,8 @@
-import express from "express";
-import {
+const express = require('express');
+const {
 orderGetController,
 orderController
- } from "./../../controllers/orderController.js";
+ } =require("./../../controllers/orderController.js")
 
 const router = express.Router();
 
@@ -16,4 +16,4 @@ router.post("/save-order", orderGetController);
 
 router.get("/display-order/:id", orderController);
 
-export default router;
+module.exports = router;

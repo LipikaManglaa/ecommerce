@@ -1,7 +1,7 @@
-import sliderModel from "../models/sliderModel.js";
+const sliderModel=require("../models/sliderModel");
 
-
-export const createSliderController = async function (req, res, next) {
+module.exports={
+ async  createSliderController (req, res, next) {
 
   const imageName = req.file.filename;
 
@@ -25,9 +25,9 @@ export const createSliderController = async function (req, res, next) {
   }
 
 
-}
+},
 
-export const SliderVIewController =  async function (req, res) {
+ async SliderVIewController (req, res) {
   try {
     
            const sliderImage = await sliderModel.find({});
@@ -47,5 +47,6 @@ export const SliderVIewController =  async function (req, res) {
          }
 
 
+},
 }
 

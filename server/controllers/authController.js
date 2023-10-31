@@ -1,9 +1,11 @@
-import userModel from "../models/userModel.js";
-import { comparePassword, hashPassword } from "../helpers/authHelper.js";
-import JWT from 'jsonwebtoken'
-import cartModel from "../models/cartModel.js";
+const userModel =require("../models/userModel");
+const { comparePassword, hashPassword } =require("../helpers/authHelper")
+const JWT =require('jsonwebtoken')
+const cartModel =require("../models/cartModel")
 
-export const registerController = async (req, res) => {
+
+module.exports={
+  async registerController(req, res) {
     try {
      
       const { name, email, password, phone } = req.body;
@@ -57,9 +59,9 @@ export const registerController = async (req, res) => {
         error,
       });
     }
-  };
+  },
   
-  export const loginController = async (req, res) => {
+   async loginController (req, res)  {
   
     try {
      
@@ -116,12 +118,12 @@ export const registerController = async (req, res) => {
         error,
       });
     }
-  };
+   },
 
 
 
   //display user
-  export const displayUserController=async(req,res)=>{
+  async displayUserController(req,res){
     try{
       const users = await userModel.find({});
       console.log(users)
@@ -138,10 +140,10 @@ export const registerController = async (req, res) => {
         message: "Error while getting all users",
       });
     }
-  }
+  },
 
 
-  export const updateProfileController = async (req, res) => {
+   async updateProfileController (req, res)  {
     try {
       const { name, email, password,  phone } = req.body;
       const { id } = req.params;
@@ -174,5 +176,6 @@ export const registerController = async (req, res) => {
         error,
       });
     }
-  };
+  },
+}
   

@@ -1,13 +1,13 @@
-import express from "express";
-
-import {
+// import express from "express";
+const express = require('express');
+const {
   categoryControlller,
   createCategoryController,
   deleteCategoryCOntroller,
   singleCategoryController,
   updateCategoryController,
   getcreateCategoryController
-} from "./../../controllers/categoryController.js";
+} = require("./../../controllers/categoryController.js");
 
 const router = express.Router();
 
@@ -40,4 +40,5 @@ router.delete(
    deleteCategoryCOntroller
 );
 
-export default router;
+// export default router;
+module.exports = router;

@@ -1,10 +1,12 @@
-import categoryModel from "../models/categoryModel.js";
-import subCategoryModel from "../models/subCategoryModel.js";
-import productModel from "../models/productModel.js";
-import slugify from "slugify";
+const {Category} =require("../models");
+const {subCategoryModel}=require("../models/subCategoryModel");
+const {productModel} =require("../models/productModel");
+const slugigy=require('slugify')
 
 
-export const createCategoryController = async (req, res) => {
+module.exports={
+
+ async createCategoryController (req, res) {
   
   const imageName = req.file.filename;
   try {
@@ -15,14 +17,14 @@ export const createCategoryController = async (req, res) => {
     if (!description) {
         return res.status(401).send({ message: "Description is required" });
       }
-    const existingCategory = await categoryModel.findOne({ name });
+    const existingCategory = await Category.findOne({ name });
     if (existingCategory) {
       return res.status(200).send({
         success: false,
         message: "Category Already Exisits",
       });
     }
-    const category = await new categoryModel({
+    const category = await new Category({
       name,
       description,
       slug: slugify(name),
@@ -41,17 +43,17 @@ export const createCategoryController = async (req, res) => {
       message: "Errro in Category",
     });
   }
-};
+},
 
 //update category
-export const updateCategoryController = async (req, res) => {
-  console.log(req.file.filename)
+  async updateCategoryController(req, res)  {
+
   let imageName=req.file.filename
-  console.log(imageName)
+
   try {
     const { name,description} = req.body;
     const { id } = req.params;
-    const category = await categoryModel.findByIdAndUpdate(
+    const category = await Category.findByIdAndUpdate(
       id,
       { name, description,slug: slugify(name) , image:imageName},
       { new: true }
@@ -69,14 +71,14 @@ export const updateCategoryController = async (req, res) => {
       message: "Error while updating category",
     });
   }
-};
+},
 
 
 //get cat
 
-export const getcreateCategoryController =async(req,res)=>{
+  async getcreateCategoryController (req,res){
   try{
-    const categories = await categoryModel.find({});
+    const categories = await Category.find({});
     res.status(200).send({
       success: true,
       message: "All Categories List",
@@ -90,31 +92,31 @@ export const getcreateCategoryController =async(req,res)=>{
       message: "Error while getting all categories",
     });
   }
-}
-// get all cat
-export const categoryControlller = async (req, res) => {
+},
+
+  async categoryControlller (req, res) {
   try {
    
-    const categories = await categoryModel.find({});
+    const categories = await Category.find({});
     const finalresult = [];
    
-    for (let category of categories) {
-        const subcategories = await subCategoryModel.find({ 'categoryId': category._id });
-        const subcategoriesWithProducts = [];
+    // for (let category of categories) {
+    //     const subcategories = await subCategoryModel.find({ 'categoryId': category._id });
+    //     const subcategoriesWithProducts = [];
 
-        for (let subcategory of subcategories) {
-            const products = await productModel.find({ 'subCategoryId': subcategory._id });
-            subcategoriesWithProducts.push({
-                subcategory: subcategory,
-                products: products,
-            });
-        }
+    //     for (let subcategory of subcategories) {
+    //         const products = await productModel.find({ 'subCategoryId': subcategory._id });
+    //         subcategoriesWithProducts.push({
+    //             subcategory: subcategory,
+    //             products: products,
+    //         });
+    //     }
 
-        finalresult.push({
-            category: category,
-            subcategories: subcategoriesWithProducts,
-        });
-    }
+    //     finalresult.push({
+    //         category: category,
+    //         subcategories: subcategoriesWithProducts,
+    //     });
+    // }
 
   
    
@@ -131,12 +133,12 @@ export const categoryControlller = async (req, res) => {
       message: "Error while getting all categories",
     });
   }
-};
+},
 
 // single category
-export const singleCategoryController = async (req, res) => {
+ async singleCategoryController (req, res)  {
   try {
-    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const category = await Category.findOne({ slug: req.params.slug });
     res.status(200).send({
       success: true,
       message: "Get SIngle Category SUccessfully",
@@ -150,13 +152,13 @@ export const singleCategoryController = async (req, res) => {
       message: "Error While getting Single Category",
     });
   }
-};
+},
 
 //delete category
-export const deleteCategoryCOntroller = async (req, res) => {
+async  deleteCategoryCOntroller (req, res)  {
   try {
     const { id } = req.params;
-    await categoryModel.findByIdAndDelete(id);
+    await Category.findByIdAndDelete(id);
     res.status(200).send({
       success: true,
       message: "Categry Deleted Successfully",
@@ -169,4 +171,5 @@ export const deleteCategoryCOntroller = async (req, res) => {
       error,
     });
   }
-};
+},
+}

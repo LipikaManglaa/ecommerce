@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const { Schema, model } = require('mongoose');
 
-const adminLoginSchema = new mongoose.Schema(
+const adminLoginSchema = new Schema(
   {
     name: {
       type: String,
@@ -20,4 +20,8 @@ const adminLoginSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("adminLogin", adminLoginSchema);
+
+const adminLogin=model("adminLogin", adminLoginSchema);
+module.exports =adminLogin;
+
+// export default mongoose.model("adminLogin", adminLoginSchema);

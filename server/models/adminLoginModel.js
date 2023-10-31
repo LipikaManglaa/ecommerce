@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
+const { Schema, model } = require('mongoose');
 
-const adminUserSchema = new mongoose.Schema(
+const adminUserSchema = new Schema(
   {
    
     email: {
@@ -18,4 +19,9 @@ const adminUserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("AdminUser", adminUserSchema);
+
+
+
+
+const AdminUser=model("AdminUser", adminUserSchema);
+module.exports = AdminUser;

@@ -1,9 +1,9 @@
-import productModel from "../models/productModel.js";
-import subCategoryModel from "../models/subCategoryModel.js";
-import slugify from "slugify";
-import path from 'path'
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+const productModel = require("../models/productModel");
+const subCategoryModel = require("../models/subCategoryModel");
+const slugify = require("slugify")
+const path = require('path')
+const { dirname } = require('path');
+const { fileURLToPath } = require('url');
 // const __dirname = dirname(fileURLToPath(import.meta.url));
 // console.log(__dirname)
 // const uploadFilePath = path.resolve(__dirname, "../../../", "../uploads");
@@ -14,8 +14,8 @@ import { fileURLToPath } from 'url';
 //  console.log(rootDir)
 
 
-
-export const createProductController = async (req, res) => {
+module.exports={
+   async createProductController (req, res)  {
 
     const imageName = req.file.filename;
     try {
@@ -54,11 +54,11 @@ export const createProductController = async (req, res) => {
         message: "Errro in products",
       });
     }
-  };
+  },
   
 
   // get all products
-export const productController = async (req, res) => {
+ async productController (req, res)  {
  
     try {
       const product = await productModel.find({})
@@ -76,12 +76,12 @@ export const productController = async (req, res) => {
         message: "Error while getting all products",
       });
     }
-  };
+  },
 
   
   //single product
 
-  export const singleProductController = async (req, res) => {
+  async singleProductController (req, res)  {
    
     try {
       const product = await productModel.findOne({ slug: req.params.slug });
@@ -99,11 +99,11 @@ export const productController = async (req, res) => {
         message: "Error While getting Single product",
       });
     }
-  };
+  },
 
 
    //delete category
-export const deleteProductController = async (req, res) => {
+ async deleteProductController(req, res)  {
   try {
     const { id } = req.params;
     await productModel.findByIdAndDelete(id);
@@ -119,11 +119,11 @@ export const deleteProductController = async (req, res) => {
       error,
     });
   }
-};
+},
 
 
 //how to acess data
-export const productCatSubCatgeoryController=async(req,res)=>{
+ async productCatSubCatgeoryController(req,res){
   try {
    
     const data= await productModel.find({}).populate({path:'subCategoryId',model:'subCategory'})
@@ -140,11 +140,11 @@ export const productCatSubCatgeoryController=async(req,res)=>{
        message: "Error while getting all sub categories",
      });
    }
-}
+},
 
 
 //product accesnding order
-export const produuctAccesndinOrderController = async (req, res) => {
+  async produuctAccesndinOrderController (req, res)  {
  
     try {
       const product = await productModel.find({}).sort({name:1})
@@ -162,6 +162,7 @@ export const produuctAccesndinOrderController = async (req, res) => {
         message: "Error while getting all products",
       });
     }
-  };
+  },
+}
 
 

@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const { Schema, model } = require('mongoose');
 
-const shippingSchema = new mongoose.Schema(
+const shippingSchema = new Schema(
   {
     address: {
       type: String,
@@ -23,7 +23,7 @@ const shippingSchema = new mongoose.Schema(
       required: true,
     },
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
@@ -33,4 +33,7 @@ const shippingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Shipping", shippingSchema);
+// export default mongoose.model("Shipping", shippingSchema);
+
+const Shipping=model("Shipping", shippingSchema);
+module.exports = Shipping;

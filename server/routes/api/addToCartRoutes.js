@@ -1,13 +1,13 @@
-import express from "express";
-
-import {
+// import express from "express";
+const express = require('express');
+const {
   addtocartController,
   displayCartController,
   deleteCartController,
   updateCartController
-} from "./../../controllers/addToCartController.js";
+} =require("./../../controllers/addToCartController.js");
 // import { sign } from "jsonwebtoken";
-import { SignIn } from "../../middleware/authMiddleware.js";
+// import { SignIn } from "../../middleware/authMiddleware.js";
 
 
   //router object
@@ -21,4 +21,4 @@ router.delete("/cart-delete/:id", deleteCartController)
 
 router.post("/cart-update/:id", updateCartController)
 
-export default router;
+module.exports = router;

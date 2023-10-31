@@ -1,10 +1,10 @@
-import express from "express";
+const express = require('express');
 
-import {
+const {
   createAddressController,
   
  
-  } from "../../controllers/shippingController.js";
+  } = require("../../controllers/shippingController.js");
 
   //router object
 const router = express.Router();
@@ -14,4 +14,4 @@ const router = express.Router();
 router.post("/add-address/:userId", createAddressController);
 
 
-export default router;
+module.exports = router;

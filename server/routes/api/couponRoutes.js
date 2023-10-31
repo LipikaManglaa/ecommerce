@@ -1,12 +1,11 @@
-import express from "express";
-
-import {
+const express = require('express');
+const{
    createCouponController,
    couponControlller,
    checkCouponController,
    deleteCouponController
   
-} from "./../../controllers/couponController.js";
+} =require("./../../controllers/couponController.js")
 
 
 
@@ -22,4 +21,4 @@ const router = express.Router();
    deleteCouponController
  );
  
- export default router;
+ module.exports = router;

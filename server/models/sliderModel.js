@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const { Schema, model } = require('mongoose');
 
-const sliderSchema = new mongoose.Schema(
+const sliderSchema = new Schema(
   {
    image:{
     type: String,
@@ -13,4 +13,6 @@ const sliderSchema = new mongoose.Schema(
  { timestamps: true }
  )
 
-export default mongoose.model("Slider", sliderSchema);
+// export default mongoose.model("Slider", sliderSchema);
+const Slider=model("Slider", sliderSchema);
+module.exports = Slider;

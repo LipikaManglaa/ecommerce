@@ -1,7 +1,7 @@
-import couponModel from "../models/couponModel.js";
+const couponModel= require("../models/couponModel")
 
-
-export const createCouponController=async(req,res)=>{
+module.exports={
+     async createCouponController(req,res){
     const {coupon_code,type,discount_amount,expiry_date,minimum_amout_order} = req.body;
    
       var d = new Date(expiry_date),
@@ -39,10 +39,10 @@ export const createCouponController=async(req,res)=>{
       });
     }
   
-}
+},
 
 
-export const couponControlller = async (req, res) => {
+   async couponControlller(req, res)  {
     try {
       // const category = await categoryModel.find({})
       const coupon = await couponModel.find({});
@@ -61,11 +61,11 @@ export const couponControlller = async (req, res) => {
         message: "Error while getting all coupons",
       });
     }
-  };
+  },
 
 
 
-export  const checkCouponController=async(req,res)=>{
+async checkCouponController(req,res){
   try{
 let couponCode=req.body.checkCode
     const coupon = await couponModel.findOne({
@@ -112,12 +112,12 @@ let couponCode=req.body.checkCode
         message: "Not Valid",
       });
   }
-}
+},
 
 //delete coupon
 
  //delete category
- export const deleteCouponController = async (req, res) => {
+   async deleteCouponController(req, res) {
   try {
     const { id } = req.params;
     await couponModel.findByIdAndDelete(id);
@@ -133,4 +133,5 @@ let couponCode=req.body.checkCode
       error,
     });
   }
-};
+},
+}

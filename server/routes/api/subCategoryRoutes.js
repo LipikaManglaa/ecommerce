@@ -1,6 +1,6 @@
-import express from "express";
+const express = require('express');
 
-import {
+const {
   subCategoryControlller,
   createSubCategoryController,
   deleteSubCategoryController,
@@ -10,7 +10,7 @@ import {
   productSubCategoryControlller,
   catSubCatgeoryController,
   produuctFilterController
-} from "./../../controllers/subCategoryController.js";
+} = require("./../../controllers/subCategoryController.js");
 
 const router = express.Router();
 
@@ -47,4 +47,4 @@ router.delete(
 router.get("/get-cat-subcategory",catSubCatgeoryController)
 
 router.post("/productFilter", produuctFilterController)
-export default router;
+module.exports = router;

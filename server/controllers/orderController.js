@@ -1,7 +1,8 @@
-import orderModel from "../models/orderModel.js";
-import cartModel from "../models/cartModel.js";
+const orderModel =require("../models/orderModel");
+const cartModel =require("../models/cartModel");
 
-export const orderGetController=async(req,res)=>{
+module.exports={
+ async orderGetController(req,res){
 
     try {
 const {userId,orderAmount,shippingAddress,discount_amount, order_type} = req.body
@@ -37,13 +38,13 @@ const {userId,orderAmount,shippingAddress,discount_amount, order_type} = req.bod
             message: "Error while getting all sub categories",
           });
         }
-      };
+      },
 
 
       //get data from order 
 
       
-export const orderController=async(req,res)=>{
+ async orderController(req,res){
   
   try{
     let id=req.params.id
@@ -66,5 +67,6 @@ export const orderController=async(req,res)=>{
   
     }
   
-  }
+  },
+}
   

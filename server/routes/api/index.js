@@ -1,20 +1,19 @@
-
-import express from "express";
+const express = require('express');
+// import express from "express";
 const router = express.Router();
-import categoryRoutes from './categoryRoutes.js';
-import subCategoryRoutes from './subCategoryRoutes.js';
-import productRoutes from './productRoutes.js';
-import authRoutes from './authRoutes.js';
+const categoryRoutes=require('./categoryRoutes.js');
+const subCategoryRoutes=require('./subCategoryRoutes.js')
+const productRoutes =require('./productRoutes.js');
+const authRoutes=require('./authRoutes.js');
 
-import sliderRoutes from './sliderRoutes.js'
-import cartRoutes from './addToCartRoutes.js'
-import couponRoutes from './couponRoutes.js'
-import shippingRoutes from './shippingRoutes.js'
-import orderRoutes from './orderRoutes.js'
-import multer from 'multer'
-import { upload } from "../../middleware/imageuploadMiddleware.js";
-
-
+const sliderRoutes=require('./sliderRoutes.js')
+const cartRoutes= require('./addToCartRoutes.js')
+const couponRoutes= require('./couponRoutes.js')
+const shippingRoutes= require('./shippingRoutes.js')
+const multer=require('multer')
+const orderRoutes= require('./orderRoutes.js')
+// const upload=require("../../middleware/imageuploadMiddleware.js")
+// const { upload } from "../../middleware/imageuploadMiddleware.js";
 
 
 
@@ -22,9 +21,9 @@ import { upload } from "../../middleware/imageuploadMiddleware.js";
 router.use('/', cartRoutes)
 router.use('/',shippingRoutes)
   
-router.use('/',upload.single("image"), productRoutes);
+router.use('/', productRoutes);
 
-router.use('/',upload.single("image"), subCategoryRoutes);
+router.use('/', subCategoryRoutes);
 
 
 
@@ -43,7 +42,7 @@ router.use('/',upload.single("image"), subCategoryRoutes);
 
 
 
-router.use('/', upload.single("image"),categoryRoutes);
+router.use('/', upload1.single("image"),categoryRoutes);
 
 
 router.use('/', authRoutes);
@@ -54,4 +53,5 @@ router.use('/', authRoutes);
  
  router.use('/',upload1.single("image"),sliderRoutes)
 
-export default router;
+// export default router;
+module.exports = router;   

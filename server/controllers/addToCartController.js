@@ -1,7 +1,10 @@
-import cartModel from "../models/cartModel.js";
-import productModel from "../models/productModel.js";
+const cartModel =require("../models/cartModel");
+const productModel =require("../models/productModel");
 
-export const addtocartController = async(req, res)=>{
+
+
+module.exports={
+ async addtocartController(req, res){
 
   try {
     let cart;
@@ -55,11 +58,11 @@ let name=oldProductData.name
       message: "Errro in creating cart",
     });
   }
-}
+},
 
 
 //display cart
-export const displayCartController=async(req,res)=>{
+async displayCartController(req,res){
   
 try{
   let id=req.params.id
@@ -82,10 +85,10 @@ try{
 
   }
 
-}
+},
 
 //delete cart
-export const deleteCartController=async(req,res)=>{
+async deleteCartController(req,res){
  
 
   try {
@@ -105,11 +108,11 @@ export const deleteCartController=async(req,res)=>{
     });
 
 }
-}
+},
 
 
 //update cart
-export const updateCartController=async(req,res)=>{
+async updateCartController(req,res){
 
  
     try {
@@ -133,4 +136,5 @@ export const updateCartController=async(req,res)=>{
         message: "Error while updating cart",
       });
     }
-  };
+  },
+}

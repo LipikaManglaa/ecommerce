@@ -15,7 +15,7 @@ export default function Home() {
   const getAllCategories = async () => {
 
     try {
-      const { data } = await axios.get(`${baseURL}/api/get-admin-category`);
+      const { data } = await axios.get(`/api/get-admin-category`);
     
       setCategories(data.categories);
 
@@ -28,7 +28,7 @@ export default function Home() {
   //for slider
   const getImage = () => {
 
-    axios.get(`${baseURL}/api/slider-view-image`)
+    axios.get(`/api/slider-view-image`)
       .then((res) => {
         setAllImage(res.data.sliderImage);
       })
@@ -89,7 +89,7 @@ export default function Home() {
                             i % 2 == 0 ?
                               <>
                                 <div className='board-img' key={i}>
-                                  <img src={`${baseURL}/` + v.image} alt={v.name} />
+                                  <img src={`/` + v.image} alt={v.name} />
                                 </div>
                                 <div className='cat-para cat-color-2'>
                                   <div className='list-style'>

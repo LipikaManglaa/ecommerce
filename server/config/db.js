@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/ecommercene
 
 mongoose.connection.once("open", () => {
     console.log(
-      `You have successfully connected to your mongo database: ${MONGO_URL}`
+      `You have successfully connected to your mongo database: ${process.env.MONGO_URL}`
     );
   });
  module.exports = mongoose.connection;

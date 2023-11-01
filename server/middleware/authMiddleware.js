@@ -1,7 +1,7 @@
-import JWT from 'jsonwebtoken'
 
+const JWT=require('jsonwebtoken')
 //Protected Routes token base
-export const SignIn = async (req, res, next) => {
+const SignIn = async (req, res, next) => {
     try {
       const decode = JWT.verify(
         req.headers.authorization,
@@ -14,3 +14,5 @@ export const SignIn = async (req, res, next) => {
       console.log(error);
     }
   };  
+
+  module.exports=SignIn

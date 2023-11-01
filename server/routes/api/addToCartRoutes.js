@@ -6,8 +6,8 @@ const {
   deleteCartController,
   updateCartController
 } =require("./../../controllers/addToCartController.js");
-// import { sign } from "jsonwebtoken";
-// import { SignIn } from "../../middleware/authMiddleware.js";
+const SignIn=require('jsonwebtoken')
+
 
 
   //router object

@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react'
 import './AdminLogin.css'
+import adminImage from './../../images/adminImage.jpg'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 export default function AdminLogin() {
@@ -30,30 +31,30 @@ export default function AdminLogin() {
       <div className="ui two column  stackable grid">
         <div className="middle column admin-banner">
           <div className="ui big button admin-banner-inner">
-            <img className="ui fluid image" src="banner.jpg" />
+            <img className="ui fluid image" src={adminImage} />
           </div>
         </div>
         <div className="column admin-login">
           <div className="ui form">
-            <h3 className>Login</h3>
+            <h3 className="login-style">Login</h3>
             <form onSubmit={handleSubmit}>
               <div className="field">
                 <label>Username</label>
                 <div className="ui left icon input">
                   <input type="text" placeholder="Username" value={email}
                     onChange={(e) => setEmail(e.target.value)} />
-                  <i className="user icon" />
+                
                 </div>
               </div>
               <div className="field">
                 <label>Password</label>
-                <div className="ui left icon input">
+                <div className="ui left icon input inputpassword">
                   <input type="password" value={password}
                     onChange={(e) => setPassword(e.target.value)} />
-                  <i className="lock icon" />
+                  
                 </div>
               </div>
-              <div  type="submit" className="ui blue submit button">Login</div>
+              <button   type="submit" className="ui blue adminBtn submit button">Login</button>
             </form>
           </div>
         </div>

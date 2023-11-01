@@ -5,6 +5,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import './../styles/Checkout.css'
 import { useNavigate } from 'react-router-dom'
+
 export default function Checkout() {
   let userData = JSON.parse(localStorage.getItem("auth")) ?? []
 

@@ -15,7 +15,7 @@ export default function Header() {
   const [auth, setAuth] = useAuth()
   const [headerData,setHeaderData]=useState([])
 let[active,setActive]=useState(false)
- console.log(baseURL)
+
   const handleLogout = () => {
     setAuth({
       ...auth,

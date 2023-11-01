@@ -79,6 +79,7 @@ module.exports={
   async getcreateCategoryController (req,res){
   try{
     const categories = await Category.find({});
+    console.log(categories)
     res.status(200).send({
       success: true,
       message: "All Categories List",
@@ -93,6 +94,28 @@ module.exports={
     });
   }
 },
+
+
+// single category
+async singleCategoryController (req, res)  {
+  try {
+    const category = await Category.findOne({ slug: req.params.slug });
+    console.log(category)
+    res.status(200).send({
+      success: true,
+      message: "Get SIngle Category SUccessfully",
+      category,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error While getting Single Category",
+    });
+  }
+},
+
 
   async categoryControlller (req, res) {
   try {
@@ -135,24 +158,7 @@ module.exports={
   }
 },
 
-// single category
- async singleCategoryController (req, res)  {
-  try {
-    const category = await Category.findOne({ slug: req.params.slug });
-    res.status(200).send({
-      success: true,
-      message: "Get SIngle Category SUccessfully",
-      category,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Error While getting Single Category",
-    });
-  }
-},
+
 
 //delete category
 async  deleteCategoryCOntroller (req, res)  {

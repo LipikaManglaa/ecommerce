@@ -12,46 +12,54 @@ const couponRoutes= require('./couponRoutes.js')
 const shippingRoutes= require('./shippingRoutes.js')
 const multer=require('multer')
 const orderRoutes= require('./orderRoutes.js')
-const upload=require("../../middleware/imageuploadMiddleware.js")
-// const { upload } from "../../middleware/imageuploadMiddleware.js";
 
 
 
 
 router.use('/', cartRoutes)
 router.use('/',shippingRoutes)
-  
-router.use('/', productRoutes);
-
-router.use('/',upload.single("image"), subCategoryRoutes);
-
-
-
-
-  const storage1 = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "./uploads/slider");
-    },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now();
-       cb(null, uniqueSuffix + file.originalname)
-    },
-  });
-  
-  const upload1 = multer({ storage: storage1 });
-
-
-
-router.use('/', upload1.single("image"),categoryRoutes);
-
-
 router.use('/', authRoutes);
 
  router.use('/', couponRoutes);
  router.use('/', orderRoutes);
+  
 
- 
- router.use('/',upload1.single("image"),sliderRoutes)
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+     cb(null, uniqueSuffix + file.originalname)
+  },
+});
+
+const upload = multer({ storage: storage });
+router.use('/', upload.single("image"),categoryRoutes);
+
+router.use('/',upload.single("image"), subCategoryRoutes);
+router.use('/', upload.single("image"),productRoutes);
+
+
+
+  // const storage1 = multer.diskStorage({
+  //   destination: function (req, file, cb) {
+  //     cb(null, "./uploads/slider");
+  //   },
+  //   filename: function (req, file, cb) {
+  //     const uniqueSuffix = Date.now();
+  //      cb(null, uniqueSuffix + file.originalname)
+  //   },
+  // });
+  
+  // const upload1 = multer({ storage: storage1 });
+
+
+
+
+
+ router.use('/',upload.single("image"),sliderRoutes)
 
 // export default router;
 module.exports = router;   

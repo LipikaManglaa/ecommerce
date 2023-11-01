@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 export default function Header() {
   
-  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
+
   const [auth, setAuth] = useAuth()
   const [headerData,setHeaderData]=useState([])
 let[active,setActive]=useState(false)
@@ -59,15 +59,15 @@ getallData()
   <div className="logo">
     <img src={logoheader} style={{paddingBottom:'10px'}}/>
   </div>
-
-  <div  className={active ? "activemenumobile" : "menu"}>
+{/*  className={active ? "activemenumobile" : "menu"} */}
+  <div >
     <ul>
       {
       
         headerData.length>0 ? 
         
    headerData.map((v,i)=>{
-    
+    console.log(v)
   
     return(
       <li className="showsubitems" key={i}>
@@ -95,10 +95,7 @@ getallData()
   </div>
  
   <div className="menuright">
-    {/* <div className="serachmenu">
-      <input type="search" placeholder="Search for products,brands and more" />
-      <i className="fa-solid fa-magnifying-glass" />
-    </div> */}
+
     <div className="profilemenu">
 
       <FontAwesomeIcon icon={faUser}/>

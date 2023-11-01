@@ -7,8 +7,6 @@ import { toast } from 'react-toastify';
 import './../styles/Home.css'
 
 export default function Home() {
-  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
-  console.log(baseURL)
   const [allImage, setAllImage] = useState([]);
   const [categories, setCategories] = useState([]);
   
@@ -30,6 +28,7 @@ export default function Home() {
 
     axios.get(`/api/slider-view-image`)
       .then((res) => {
+        console.log(res.data.sliderImage)
         setAllImage(res.data.sliderImage);
       })
 
@@ -55,14 +54,15 @@ export default function Home() {
       <Layout>
 
         {/* Banner section */}
-
+       
         <section style={{overflow:'hidden'}}>
           <Slider {...settings}>
             {
               allImage.length > 0 ?
                 allImage.map((v, i) => {
+                  console.log(v)
                   return (
-                    <><img src={`/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
+                    <><img src={`/`+ v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
                   )
                 })
 

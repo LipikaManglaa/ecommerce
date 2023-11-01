@@ -26,7 +26,7 @@ module.exports={
         categoryId,
         image:imageName
       }).save();
-    console.log(subcategory)
+   
       res.status(201).send({
         success: true,
         message: "new sub category created",
@@ -120,7 +120,7 @@ module.exports={
         message: "sub Categry Deleted Successfully",
       });
     } catch (error) {
-      console.log(error);
+      
       res.status(500).send({
         success: false,
         message: "error while deleting sub category",
@@ -231,24 +231,24 @@ async  produuctFilterController(req,res){
                   finalresult.push(products)
         }
 
-      // const subcategoriesWithProducts = [];
+      const subcategoriesWithProducts = [];
   
-    //       for (let subcategory of subcategories) {
-    //           const products = await productModel.find({ 'subCategoryId': subcategory._id });
-    //           subcategoriesWithProducts.push({
-    //               subcategory: subcategory,
-    //               products: products,
-    //           });
-    //       }
+          for (let subcategory of subcategories) {
+              const products = await productModel.find({ 'subCategoryId': subcategory._id });
+              subcategoriesWithProducts.push({
+                  subcategory: subcategory,
+                  products: products,
+              });
+          }
   
-    //       finalresult.push({
+          finalresult.push({
              
-    //           subcategories: subcategoriesWithProducts,
-    //       });
+              subcategories: subcategoriesWithProducts,
+          });
     }
   
     
-    
+
   
           res.status(200).send({
             success: true,
@@ -274,7 +274,7 @@ async catSubCatgeoryController(req,res){
    
     const data= await subCategoryModel.find({}).populate({path:'categoryId',model:'Category'})
    
-   console.log(data)
+
   
      res.status(200).send({
        success: true,

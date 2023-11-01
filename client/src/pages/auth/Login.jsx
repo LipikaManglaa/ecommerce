@@ -21,9 +21,7 @@ export default function Login() {
         email,
         password,
       });
-    
-     
-      
+          
       if (res.data.sucess) {
         toast.success(res.data.message, { autoClose: 1000 });
         setAuth({

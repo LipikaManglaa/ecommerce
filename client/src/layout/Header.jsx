@@ -15,7 +15,7 @@ export default function Header() {
   const [auth, setAuth] = useAuth()
   const [headerData,setHeaderData]=useState([])
 let[active,setActive]=useState(false)
- 
+ console.log(baseURL)
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -35,7 +35,7 @@ let[active,setActive]=useState(false)
   }
   const getallData =  () => {
  
-      axios.get(`${baseURL}/api/get-category`)
+      axios.get(`/api/get-category`)
     .then((res)=>res.data)
     .then((finalData)=>{
      console.log(finalData)

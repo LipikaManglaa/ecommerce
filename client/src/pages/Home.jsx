@@ -62,7 +62,7 @@ export default function Home() {
               allImage.length > 0 ?
                 allImage.map((v, i) => {
                   return (
-                    <><img src={`${baseURL}/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
+                    <><img src={`/` + v.image} style={{ height: '400px', width: "100%" }} key={i}/></>
                   )
                 })
 
@@ -112,7 +112,7 @@ export default function Home() {
                                   <button class="wbtn"><Link to={`/category/` + v.slug}>More Products</Link></button>
                                 </div>
                                 <div className='board-img'>
-                                  <img src={`${baseURL}/` + v.image} alt={v.name} />
+                                  <img src={`/` + v.image} alt={v.name} />
                                 </div>
                               </>
                           }

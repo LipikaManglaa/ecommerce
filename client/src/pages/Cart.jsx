@@ -30,7 +30,7 @@ export default function Cart() {
 
     userId = user.user.id;
 
-    axios.get(`${baseURL}/api/display-cart/${userId}`)
+    axios.get(`/api/display-cart/${userId}`)
 
       .then((res) => res.data)
       .then((finalData) => {
@@ -70,7 +70,7 @@ export default function Cart() {
     let checkCode = e.target.coupon_code.value
     let totalAmount = cartTotal
 
-    axios.post(`${baseURL}/api/check-coupon`, {
+    axios.post(`/api/check-coupon`, {
       checkCode
     })
       .then((res) => {
@@ -190,7 +190,7 @@ let Cartrow = ({ v, i, getCartData }) => {
     setQty(e.target.value)
     let updateId = v._id;
     let qtyNew = e.target.value;
-    await axios.post(`http://localhost:5000/api/cart-update/${updateId}`, {
+    await axios.post(`/api/cart-update/${updateId}`, {
       qty: qtyNew
     })
       .then((res) => {

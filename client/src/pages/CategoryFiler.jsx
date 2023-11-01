@@ -42,7 +42,7 @@ export default function CategoryFiler() {
   const getFilter=()=>{
 
     if(subcartgoryId.length>0){
-      axios.post(`${baseURL}/api/productFilter`,{
+      axios.post(`/api/productFilter`,{
        
           subCat:subcartgoryId,
         
@@ -83,7 +83,7 @@ export default function CategoryFiler() {
   }
   const getSubCategoryProduct = () => {
 
-   axios.get(`${baseURL}/api/getproductsubcategory`, {
+   axios.get(`/api/getproductsubcategory`, {
       params: {
         slug: data.slug
       }
@@ -133,7 +133,7 @@ export default function CategoryFiler() {
   //get product by accending order
   const getProductByAccending = () => {
 
-    axios.get(`${baseURL}/api/productAccendingOrder`)
+    axios.get(`/api/productAccendingOrder`)
     .then((res)=>{
       console.log(res)
       setProductData(res.data)
@@ -154,7 +154,7 @@ export default function CategoryFiler() {
       let user = JSON.parse(localStorage.getItem("auth"))
       let userId = user.user.id;
       let qty = 1;
-      axios.post(`${baseURL}/api/cart`,
+      axios.post(`/api/cart`,
         {
           userId,
           qty,
@@ -286,7 +286,7 @@ useEffect(()=>{
 
                           <div className='product-list-items' key={i}>
                            <Link to={'/product-details/' + value.slug}>
-                            <img src={`${baseURL}/` + value.image} />   </Link>
+                            <img src={`/` + value.image} />   </Link>
                           
                           <div className="product-cat">
                             <span className="">{value.name}</span>

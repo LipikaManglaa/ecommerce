@@ -18,7 +18,7 @@ export default function ProductDetails() {
    let getproductList = async () => {
 
    
-    axios.get(`${baseURL}/api/single-product/${data.slug}`)
+    axios.get(`/api/single-product/${data.slug}`)
     .then((res)=>{
       setData(res.data.product)
     

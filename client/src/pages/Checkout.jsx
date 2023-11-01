@@ -31,7 +31,7 @@ let[orderType,setOrderType]=useState("cash")
    
 
     if(orderType=="cash") {
-      axios.post(`${baseURL}/api/save-order/`,{
+      axios.post(`/api/save-order/`,{
         userId,
         orderAmount:cartTotal,
         couponCodeAmount,
@@ -117,7 +117,7 @@ navigate('/user-dashboard')
    
     e.preventDefault();
     try{
-    const res=await axios.post(`${baseURL}/api/add-address/${userId}`,{
+    const res=await axios.post(`/api/add-address/${userId}`,{
       address,
       city,
       state,

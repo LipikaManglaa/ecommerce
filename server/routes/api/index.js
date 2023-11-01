@@ -12,7 +12,7 @@ const couponRoutes= require('./couponRoutes.js')
 const shippingRoutes= require('./shippingRoutes.js')
 const multer=require('multer')
 const orderRoutes= require('./orderRoutes.js')
-// const upload=require("../../middleware/imageuploadMiddleware.js")
+const upload=require("../../middleware/imageuploadMiddleware.js")
 // const { upload } from "../../middleware/imageuploadMiddleware.js";
 
 
@@ -23,7 +23,7 @@ router.use('/',shippingRoutes)
   
 router.use('/', productRoutes);
 
-router.use('/', subCategoryRoutes);
+router.use('/',upload.single("image"), subCategoryRoutes);
 
 
 

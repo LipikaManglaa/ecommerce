@@ -19,10 +19,15 @@ const userSchema = new Schema(
       type: Number,
       required: true,
     },
-    email_verification_status:{
-    type:Boolean,
-    default:0,
-   },
+    answer: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: Number,
+      default: 0,
+    },
+  
    
   },
   { timestamps: true }

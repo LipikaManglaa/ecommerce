@@ -12,12 +12,13 @@ let navigate=useNavigate()
     let[email,setEmail]=useState("")
     let[password,setPassword]=useState("")
     let[phone,setPhone]=useState("")
+    const [answer, setAnswer] = useState("");
 
     let handleSubmit= async (e) =>{
       e.preventDefault();
       try{
       const res=await axios.post(`/api/register`,{
-          name,email,password,phone
+          name,email,password,phone,answer
         })
        
         if (res.data.success) {
@@ -49,13 +50,11 @@ let navigate=useNavigate()
         <div className="form-group">
           <input type="text" placeholder="User Name"  name='name'  value={name}
               onChange={(e) => setName(e.target.value)}/>
-        
-        </div>
+            </div>
         <div className="form-group">
           <input type="email" placeholder="Email" name='email'  value={email}
               onChange={(e) => setEmail(e.target.value)} />
-          
-        </div>
+                  </div>
         <div className="form-group">
           <input type="password" placeholder="password" name='password'  value={password}
               onChange={(e) => setPassword(e.target.value)}/>
@@ -66,10 +65,11 @@ let navigate=useNavigate()
               onChange={(e) => setPhone(e.target.value)}/>
          
         </div>
-        {/* <div className="form-group">
-          <input type="text" placeholder="Address" name="address" />
-          <span className="errorContainer">Please enter a valid address</span>
-        </div> */}
+        <div className="form-group">
+          <input type="tel" placeholder="answer" name='answer'  value={answer}
+              onChange={(e) =>  setAnswer(e.target.value)}/>
+         
+        </div>
        
         <div>
           <button type='submit' className="submitBottomOption">Submit</button>

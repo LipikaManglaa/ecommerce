@@ -8,7 +8,7 @@ module.exports={
   async registerController(req, res) {
     try {
      
-      const { name, email, password, phone } = req.body;
+      const { name, email, password, phone ,answer,role} = req.body;
       
       //validations
       if (!name) {
@@ -22,6 +22,9 @@ module.exports={
       }
       if (!phone) {
         return res.send({ message: "Phone no is Required" });
+      }
+      if (!answer) {
+        return res.send({ message: "Answer is Required" });
       }
     
    
@@ -43,6 +46,8 @@ module.exports={
         email,
         phone,
         password: hashedPassword,
+        role,
+        answer
        
       }).save();
   
@@ -126,7 +131,7 @@ module.exports={
   async displayUserController(req,res){
     try{
       const users = await userModel.find({});
-      console.log(users)
+     
       res.status(200).send({
         success: true,
         message: "All User List",

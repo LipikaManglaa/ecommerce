@@ -5,9 +5,9 @@ import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../../context/auth'
-// import { useAuth } from '../../context/auth'
+
 export default function Login() {
-  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
+
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
  let [auth,setAuth]=useAuth()

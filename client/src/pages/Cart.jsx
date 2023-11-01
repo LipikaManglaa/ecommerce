@@ -10,7 +10,11 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export default function Cart() {
 
-  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
+  let userData1 = JSON.parse(localStorage.getItem("auth")) ?? []
+
+  if (userData1.length === 0) {
+      window.location = "/login"
+  }
   let [auth, setAuth] = useAuth()
   let [cartD, setCartD] = useState([])
   let [cartTotal, setCartTotal] = useState(0)
@@ -194,9 +198,7 @@ let Cartrow = ({ v, i, getCartData }) => {
       qty: qtyNew
     })
       .then((res) => {
-
-        toast.success(res.data.message, { autoClose: 1000 })
-
+toast.success("your item has been updated!" ,{autoClose:1000})
         getCartData();
       })
 

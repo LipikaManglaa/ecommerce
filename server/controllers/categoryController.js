@@ -1,7 +1,7 @@
 const {Category} =require("../models");
 const {subCategoryModel}=require("../models/subCategoryModel");
 const {productModel} =require("../models/productModel");
-const slugigy=require('slugify')
+const slugify=require('slugify')
 
 
 module.exports={
@@ -28,7 +28,7 @@ module.exports={
       name,
       description,
       slug: slugify(name),
-      image:imageName,
+     image:imageName,
     }).save();
     res.status(201).send({
       success: true,
@@ -39,7 +39,7 @@ module.exports={
     console.log(error);
     res.status(500).send({
       success: false,
-      errro,
+      error,
       message: "Errro in Category",
     });
   }

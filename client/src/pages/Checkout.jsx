@@ -6,21 +6,23 @@ import { toast } from 'react-toastify'
 import './../styles/Checkout.css'
 import { useNavigate } from 'react-router-dom'
 export default function Checkout() {
-  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
+  let userData = JSON.parse(localStorage.getItem("auth")) ?? []
+
+  if (userData.length === 0) {
+      window.location = "/login"
+  }
   let[address,setAddress]=useState("")
   let[city,setCity]=useState("")
   let[state,setState]=useState("")
   let[pincode,setPincode]=useState("")
   let[country,setCountry]=useState("")
-
-
-
   let[auth,setAuth]=useAuth()
   let[cartD,setCartD]=useState([])
   let [cartTotal,setCartTotal]=useState(0)
   let[couponCodeAmount,setCouponCodeAmount]=useState(0)
   let[discoutAmount ,setDiscountAmount]=useState(0)
   let[discountPercentage,setDiscountPercentage]=useState(0)
+  let[shippingAddress,setShippingAddress]=useState()
 
 let navigate=useNavigate()
 let[orderType,setOrderType]=useState("cash")
@@ -29,7 +31,6 @@ let[orderType,setOrderType]=useState("cash")
   let userId=user.user.id;
   let handleOrder=async(e)=>{
    
-
     if(orderType=="cash") {
       axios.post(`/api/save-order/`,{
         userId,
@@ -60,14 +61,22 @@ localStorage.removeItem('coupon')
 navigate('/user-dashboard')
   }
 
+//address display
+let dispalyAddress=()=>{
+  axios.get(`/api/display-address`)
+  .then((res)=>{
+    setShippingAddress(res.data)
+  })
+}
+dispalyAddress()
 
-
+//cart data display
   const getCartData =  () => {
     let user=JSON.parse(localStorage.getItem("auth"))
  
     userId=user.user.id;
   
-    axios.get(`${baseURL}/api/display-cart/${userId}`)
+    axios.get(`/api/display-cart/${userId}`)
     
     .then((res)=>res.data)
     .then((finalData)=>{
@@ -105,12 +114,6 @@ navigate('/user-dashboard')
     setOrderType(e.target.value)
   }
 
-
-
-
-
-
-  
   let handleSubmit= async (e) =>{
     let user=JSON.parse(localStorage.getItem("auth"))
     let userId=user.user.id;
@@ -167,7 +170,7 @@ useEffect(()=>{
               <h3 className='billing'>Billing Address</h3>
             
               <label htmlFor="adr"><i className="fa fa-address-card-o" /> Address</label>
-              <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" value={address}
+              <input type="text" id="adr" name="address" placeholder="542 W. 15th Street"  value={address}
               onChange={(e) => setAddress(e.target.value)} />
               <label htmlFor="city"><i className="fa fa-institution" /> City</label>
               <input type="text" id="city" name="city" placeholder="New York" value={city}
@@ -192,24 +195,20 @@ useEffect(()=>{
             </div>
         
           </div>
-          <label>
-            <input type="checkbox" defaultChecked="checked" name="sameadr" /> Shipping address same as billing
-          </label>
+         
           <input type="submit" defaultValue="Continue to checkout" className="btn" />
         </form>
       </div>
     </div>
     <div className="col-50 checkout-right">
       <div className="container">
-   
-
-      
-       
-      	<div className="col-5 col order">
+         	<div className="col-5 col order">
   <h3 className="topborder"><span>Your Order</span></h3>
   <div className="row justify-between">
-    <h4 className="inline">Product</h4>
-   
+    <h4 className="inline">Product Name</h4>
+   <p>Product Price</p>
+   <span>Qty</span>
+   <h4>Total Price</h4>
   </div>
   <div>
     {
@@ -217,8 +216,14 @@ useEffect(()=>{
 cartD.map((v,i)=>{
   return(
     <>
-    <p className="prod-description inline">{v.name}</p>  |   <div className="qty inline"> {v.amount}  <span className="smalltxt">x</span> {v.qty} ={v.qty*v.amount}</div>
-    <p />
+    <div className="row justify-between" key={i}>
+    <h4 className="inline">{v.name}</h4>
+   <p>{v.amount}</p>
+   <span>{v.qty}</span>
+   <h4>{v.qty*v.amount}</h4>
+    </div>
+   
+   
     </>
   )
 })
@@ -227,11 +232,11 @@ cartD.map((v,i)=>{
     }
     
   </div>
-  <div><h5>Cart Subtotal {cartTotal}</h5></div>
-  <div><h5>Discount Amount {discoutAmount}</h5></div>
+  <div style={{display:'flex',justifyContent:'space-between'}}><h5>Cart Subtotal </h5><h6>{cartTotal}</h6></div>
+  <div style={{display:'flex',justifyContent:'space-between'}}><h5>Discount Amount </h5><h6>{discoutAmount}</h6></div>
 
   
-  <div><h5>Order Total {couponCodeAmount}</h5></div>
+  <div  style={{display:'flex',justifyContent:'space-between'}}><h5>Order Total </h5><h6>{couponCodeAmount}</h6></div>
   <div className='payment'>
     <h3 className="topborder"><span>Payment Method</span></h3>
     </div>

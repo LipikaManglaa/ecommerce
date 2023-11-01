@@ -7,7 +7,7 @@ import { useAuth } from '../context/auth'
 import { toast } from 'react-toastify'
 
 export default function ProductDetails() {
-  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
+ 
   let data=useParams()
   
    let[datadata,setData]=useState({})
@@ -15,6 +15,13 @@ export default function ProductDetails() {
    let [auth, setAuth] = useAuth()
    let navigate=useNavigate()
  
+//for redirect
+   let userData = JSON.parse(localStorage.getItem("auth")) ?? []
+
+   if (userData.length === 0) {
+       window.location = "/login"
+   }
+
    let getproductList = async () => {
 
    
@@ -39,7 +46,7 @@ export default function ProductDetails() {
       let user = JSON.parse(localStorage.getItem("auth"))
       let userId = user.user.id;
       let qty = 1;
-      axios.post(`${baseURL}/api/cart`,
+      axios.post(`/api/cart`,
         {
           userId,
           qty,

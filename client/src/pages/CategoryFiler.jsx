@@ -6,11 +6,10 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons'
-import { useCart } from '../context/cart'
 import { toast } from 'react-toastify'
 import { useAuth } from '../context/auth'
 export default function CategoryFiler() {
-  const baseURL = process.env.REACT_APP_API_BASE_URL_DEV
+  
   let data = useParams()
   let navigate = useNavigate()
   let [catProduct, setCatProducts] = useState()
@@ -130,18 +129,6 @@ export default function CategoryFiler() {
   }
 
 
-  //get product by accending order
-  const getProductByAccending = () => {
-
-    axios.get(`/api/productAccendingOrder`)
-    .then((res)=>{
-      console.log(res)
-      setProductData(res.data)
-    })
-  }
-
-
-
   let handleCart = (productId) => {
    
     if (auth.token === "") {
@@ -164,6 +151,7 @@ export default function CategoryFiler() {
       
         setCart(res.data)
         setAuth({...auth,cartItem:res.data.cartItem})
+        toast.success("your item has been added into cart!",{autoClose:1000})
       })
 
 
@@ -262,19 +250,7 @@ useEffect(()=>{
             </div>
            
             <div className="product-right">
-            <div className='list-data list-pro'><h4>
- <div onClick={getProductByAccending}>order</div> 
-              <select className='cat-select'>
-                <option >Sort By: Recommend</option>
-                <option>Accending order</option>
-               <option>Price:High to Low</option>
-                 <option>Price :Low to High
-                </option> 
-               
-              </select>
-            </h4>
-             
-             </div>
+           
                         <div className='product-right-lsit'>
                         {
                   productData !== undefined ?

@@ -1,3 +1,4 @@
+const Shipping = require("../models/shippingModel");
 const shippingModel =require("../models/shippingModel")
 
 
@@ -44,4 +45,22 @@ module.exports={
     }
 
 },
+
+async getAddtressController(req,res){
+  try{
+    const shipping = await shippingModel.findOne({});
+    res.status(200).send({
+      success: true,
+      message: "All shipping List",
+      shipping
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while getting all shopping",
+    });
+  }
+}
 }

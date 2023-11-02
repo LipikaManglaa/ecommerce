@@ -6,6 +6,9 @@ import { toast } from 'react-toastify'
 import './../styles/Checkout.css'
 import { useNavigate } from 'react-router-dom'
 
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe("pk_test_51O5fDhIPM4mXdoaJvRWBxpDnsibWo0zyMQ37sskCGVK31KUTsXjx1GGvJiyZ3WDz0M2HLn2qd39IC7ZadO6uvHzf00vrb3TEuM");
 export default function Checkout() {
   let userData = JSON.parse(localStorage.getItem("auth")) ?? []
 
@@ -50,16 +53,37 @@ let[orderType,setOrderType]=useState("cash")
       .then((res)=>{
      
       })
-    }
-    else{ 
-
-    }
-
-toast.success("your order has been done succesfuuly!",{autoClose:1000})
+      toast.success("your order has been done succesfuuly!",{autoClose:1000})
 setAuth({...auth,cartItem:0})
 localStorage.removeItem('coupon')
 
 navigate('/user-dashboard')
+    }
+    else{ 
+      const stripe = await stripePromise;
+
+
+      axios.post(`/api/save-order/`,{
+        userId,
+        orderAmount:cartTotal,
+        couponCodeAmount,
+        discoutAmount,
+        order_type:orderType,
+        shippingAddress:{
+          address,
+          city,
+          state,
+          pincode,
+          country,
+        }
+      }).then((res)=>{
+        return res.data
+      })
+    }
+      // When the customer clicks on the button, redirect them to Checkout.
+    
+
+
   }
 
 //address display

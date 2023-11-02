@@ -13,11 +13,25 @@
 .profilemenu a{
     color: #000;
 }
+.headerData-list{
+    display: flex;
+    gap: 10px 20px;
+
+}
+.headerData-list-inner{
+    list-style: none;
+    
+}
+.headerData-list-inner a{
+    color: #000;
+    font-weight: bold;
+}
+
 header{
     display: flex;
     max-width: 1170px;
     margin: auto;
-  
+  padding: 15px 0px;
     align-items: center;
     justify-content: space-between;
 }
@@ -75,7 +89,7 @@ sup{
     }
     .menuright{
         display: flex;
-        flex-basis: 10%;
+        flex-basis: 20%;
         justify-content: space-between;
     }
     .menuright>ul{
@@ -286,8 +300,11 @@ min-width: 164px;
     opacity: 1;
    /* transition-delay: 15s; */
 }
+.profilemenu{
+    position: relative;
+}
 .profilemenu>h3>.submenylist{
-    left: 67% !important;
+    right:0px !important;
     width: 400px !important;
    
    
@@ -535,5 +552,21 @@ transition: .2s;
       }
       .submneuliststudio{
         display: none;
+      }
+      .headerData-list{
+        flex-direction: column;
+        position: fixed;
+        left:-100%;
+transition: .3s;
+        background-color: #fff;
+        width: 90%;
+        padding: 15px;
+        box-shadow: 0px 0px 10px 2px #ccc;
+        z-index: 999;
+        top: 0;
+        height: 80vh;
+      }
+      .activeheaderlist{
+        left: 0%;
       }
     }

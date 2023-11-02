@@ -4,7 +4,7 @@ import './../styles/Header.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logoheader from './../images/logoheader.png'
 
-import { faBagShopping, faBars, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping, faBars, faClose, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from '../context/auth';
 
 import { toast } from 'react-toastify';
@@ -59,29 +59,29 @@ getallData()
   <div className="logo">
     <img src={logoheader} style={{paddingBottom:'10px'}}/>
   </div>
-{/*  className={active ? "activemenumobile" : "menu"} */}
+
   <div >
-    <ul>
+    <ul className={`headerData-list ${active ? "activeheaderlist" : ""}`}>
       {
       
         headerData.length>0 ? 
         
    headerData.map((v,i)=>{
-    console.log(v)
+   
   
     return(
-      <li className="showsubitems" key={i}>
+      <li className="showsubitems headerData-list-inner" key={i}>
         
               
         <Link to={`/category/`+v.category.slug}>{v.category.name}</Link>
       <div className="subMenu" />
       <div className="submenylist">
         
-     <SubCategory subcatgoryList={v.subcategories}/>
+     {/* <SubCategory subcatgoryList={v.subcategories}/> */}
 
       
         
-      </div>
+     </div>
     </li>
     )
    })
@@ -125,11 +125,7 @@ getallData()
        
        </h3>
     </div>
-    {/* <div className="profilemenu">
-    <FontAwesomeIcon icon={faHeart} />
-      <i className="fa-regular fa-heart" />
-      <h3><Link to={'/Wishlist'}>Wishlist</Link></h3>
-    </div> */}
+  
     <div className="profilemenu">
 
     <Link to={'/cart'}>
@@ -140,7 +136,7 @@ getallData()
    
   </div>
   <div>
-    <FontAwesomeIcon icon={faBars}  onClick={dispalyMenu} className='header-bar'/>
+    <FontAwesomeIcon icon  ={  active ? faClose : faBars  }  onClick={dispalyMenu} className='header-bar'/>
     
  
   </div>
@@ -153,51 +149,3 @@ getallData()
 
 
 
-function SubCategory({subcatgoryList}){ 
-
-    return (
-      <>
-      {
-        subcatgoryList.length>0 ?
-subcatgoryList.map((value,index)=>{
-  return(
-    <div className="sub-list-item " key={index} >
-    <div className="list-item">
-    
-      <h3>{value.subcategory.name}</h3>
-      <ul className="sub-menu">
-<ProductMenu productList={value.products}/>
-        
-       
-      </ul>
-    </div>
-    
-  </div>
-  )
-})
-
-        : ""
-      }
-     
-      
-      </>
-    )
-}
-
-function ProductMenu({productList}){
-  
-  return(
-<>    {
-
-productList.length>0 ?
-productList.map((v,i)=>{
-  return(
-    <li key={i}> <Link to={'/'}>{v.name}</Link></li>
-  )
-})
-
-:""
-    }
-</>
-  )
-}

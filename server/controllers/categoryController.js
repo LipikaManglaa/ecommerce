@@ -121,27 +121,17 @@ async singleCategoryController (req, res)  {
   try {
    
     const categories = await Category.find({});
-    const finalresult = [];
-   
-    // for (let category of categories) {
-    //     const subcategories = await subCategoryModel.find({ 'categoryId': category._id });
-    //     const subcategoriesWithProducts = [];
+    let finalresult = [];
 
-    //     for (let subcategory of subcategories) {
-    //         const products = await productModel.find({ 'subCategoryId': subcategory._id });
-    //         subcategoriesWithProducts.push({
-    //             subcategory: subcategory,
-    //             products: products,
-    //         });
-    //     }
+    for (let category of categories) {
 
-    //     finalresult.push({
-    //         category: category,
-    //         subcategories: subcategoriesWithProducts,
-    //     });
-    // }
+            finalresult.push({
+              category: category,
+            
+          });
 
-  
+
+        }
    
     res.status(200).send({
       success: true,

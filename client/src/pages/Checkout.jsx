@@ -52,14 +52,15 @@ let[orderType,setOrderType]=useState("cash")
         }
       })
       .then((res)=>{
-     
+       
       })
       toast.success("your order has been done succesfuuly!",{autoClose:1000})
+      navigate(`/user-dashboard`)
+      
 setAuth({...auth,cartItem:0})
 localStorage.removeItem('coupon')
 
 
-window.location="/user-dashboard"
     }
     else{ 
       

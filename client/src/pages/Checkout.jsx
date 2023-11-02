@@ -58,7 +58,7 @@ let[orderType,setOrderType]=useState("cash")
 setAuth({...auth,cartItem:0})
 localStorage.removeItem('coupon')
 
-navigate('/user-dashboard')
+navigate(`/user-dashboard`)
     }
     else{ 
       

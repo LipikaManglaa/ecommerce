@@ -113,8 +113,8 @@ const {userId,orderAmount,shippingAddress,discount_amount, order_type} = req.bod
         },
       ],
       mode: 'payment',
-      success_url: "https://gruesome-chupacabra-93812-89264ae7b4ee.herokuapp.com//user-dashboard",
-    cancel_url: "https://gruesome-chupacabra-93812-89264ae7b4ee.herokuapp.com//stripepaymentcancel",
+      success_url: "https://gruesome-chupacabra-93812-89264ae7b4ee.herokuapp.com/user-dashboard",
+    cancel_url: "https://gruesome-chupacabra-93812-89264ae7b4ee.herokuapp.com/stripepaymentcancel",
     });
   
     res.json({ id: session.id });

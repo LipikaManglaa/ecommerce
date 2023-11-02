@@ -9,7 +9,7 @@ const multer=require('multer')
 const db = require('./config/db');
 const routes = require('./routes');
 const dotenv=require('dotenv')
-const stripe = require("stripe")(process.env.stripeSecretKey);
+
 
 //configure env
 dotenv.config();

@@ -1,7 +1,7 @@
 const orderModel =require("../models/orderModel");
 const cartModel =require("../models/cartModel");
 const stripe = require("stripe")("sk_test_51O5fDhIPM4mXdoaJnv8oBMjwVPzAvrdFf7cw0Fk939Kh8Rm3rQfPkoCDnDyNbCkPrSqnxZbeo9ymm2wb4wghOea700ADselVmO");
-
+// const stripe = require("stripe")(process.env.Private_Api_Key);
 module.exports={
  async orderGetController(req,res){
 
@@ -73,7 +73,7 @@ const {userId,orderAmount,shippingAddress,discount_amount, order_type} = req.bod
 
   //checkour session
   async checkoutSessionController(req,res){
-    console.log(req.body)
+
 
     const {userId,orderAmount,shippingAddress,discount_amount, order_type,couponCodeAmount} = req.body
         const cart = await cartModel.find({userId:userId})
@@ -113,8 +113,8 @@ const {userId,orderAmount,shippingAddress,discount_amount, order_type} = req.bod
         },
       ],
       mode: 'payment',
-      success_url: "https://gruesome-chupacabra-93812-89264ae7b4ee.herokuapp.com",
-    cancel_url: "https://gruesome-chupacabra-93812-89264ae7b4ee.herokuapp.com/stripepaymentcancel",
+      success_url: "http://localhost:3000",
+    cancel_url: "http://localhost:3000/stripepaymentcancel",
     });
   
     res.json({ id: session.id });

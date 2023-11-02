@@ -89,7 +89,7 @@ sup{
     }
     .menuright{
         display: flex;
-        flex-basis: 20%;
+        flex-basis: 10%;
         justify-content: space-between;
     }
     .menuright>ul{
@@ -145,6 +145,9 @@ sup{
 .menu>ul>li .subMenu{
   
    
+}
+.menulistmobiledesktop{
+    display: none;
 }
 .menu>ul>li:hover .subMenu{
     position: fixed;
@@ -370,10 +373,12 @@ min-width: 164px;
     }
     .profilemenu h3 {
        
-        display: none;
+        display:none;
     }
 
-
+.submenulistitemss{
+    display: none;
+}
     .logo{
         margin-right: 5px;
         flex-basis: inherit;
@@ -440,16 +445,16 @@ min-width: 164px;
         top: 50px;
     }
     .submenylist {
-        visibility: hidden;
+        /* visibility: hidden; */
         flex-direction: column;
-        width: 100%;
-        justify-content: space-between;
+        width: 100% !important;
+        /* justify-content: space-between;
         display: flex;
         padding: 0px 20px 40px 20px;
         left: 0%;
         opacity: 0;
     
-        position:absolute;
+        position:absolute; */
     }
     .list-item {
         margin-left: 0px;
@@ -569,4 +574,29 @@ transition: .3s;
       .activeheaderlist{
         left: 0%;
       }
+      .userDashboardShow{
+        display: block !important;
+      }
+      .btn-login {
+        padding: 0px;
+        margin: 0px;
+        border: none;
+        border-radius: 2px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        display: flex;
+        gap: 10px;
+        position: absolute;
+        right: -44px;
+        top: 2px;
+    }
+    .cartlistmenu{
+        position: relative;
+        left: 30px;
+    }
+    .menulistmobiledesktop{
+        display: block;
+    }
     }

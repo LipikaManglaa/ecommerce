@@ -27,6 +27,7 @@ export default function Checkout() {
   let[discoutAmount ,setDiscountAmount]=useState(0)
   let[discountPercentage,setDiscountPercentage]=useState(0)
   let[shippingAddress,setShippingAddress]=useState()
+  let [sessionData,setSessionData]=useState({})
 
 let navigate=useNavigate()
 let[orderType,setOrderType]=useState("cash")
@@ -60,10 +61,8 @@ localStorage.removeItem('coupon')
 navigate('/user-dashboard')
     }
     else{ 
-      const stripe = await stripePromise;
-
-
-      axios.post(`/api/save-order/`,{
+      
+         axios.post(`/api/create-checkout-session/`,{
         userId,
         orderAmount:cartTotal,
         couponCodeAmount,
@@ -78,22 +77,33 @@ navigate('/user-dashboard')
         }
       }).then((res)=>{
         return res.data
+      }).then((response)=>{
+        setSessionData(response)
       })
-    }
-      // When the customer clicks on the button, redirect them to Checkout.
+
+
     
+    // When the customer clicks on the button, redirect them to Checkout.
+   
+    
+    }
+      
+  
 
 
   }
 
-//address display
-let dispalyAddress=()=>{
-  axios.get(`/api/display-address`)
-  .then((res)=>{
-    setShippingAddress(res.data)
-  })
-}
-dispalyAddress()
+  useEffect(async()=>{
+
+    if(sessionData.id !== undefined){
+    const stripe = await stripePromise;
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: sessionData.id,
+    });
+  }
+  },[sessionData])
+
 
 //cart data display
   const getCartData =  () => {

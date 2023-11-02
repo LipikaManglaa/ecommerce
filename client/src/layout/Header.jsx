@@ -15,6 +15,7 @@ export default function Header() {
   const [auth, setAuth] = useAuth()
   const [headerData,setHeaderData]=useState([])
 let[active,setActive]=useState(false)
+let [activeUserMenu,setActiveUserMenu]=useState(false)
 
   const handleLogout = () => {
     setAuth({
@@ -97,15 +98,20 @@ getallData()
   <div className="menuright">
 
     <div className="profilemenu">
-
-      <FontAwesomeIcon icon={faUser}/>
+    {
+            !auth?.user ? (
+            <div className="btn-login  menulistmobiledesktop"><Link to="/signup"> Signup &nbsp; </Link>  <Link to="/login">login</Link></div>
+            ) : (
+              <div className="btn-login  menulistmobiledesktop"><Link to={`/user-dashboard`}> Dashboard &nbsp;</Link>  <Link to="/login" onClick={handleLogout}>logout</Link></div>
+)}
+      <FontAwesomeIcon className="submenulistitemss" icon={faUser} onClick={()=>setActiveUserMenu(!activeUserMenu)}/>
       <h3 >Profile
        
       
           
           <div className="subMenu submeny-color4" ></div>
           <div className="submenylist submneuliststudio" >
-          <div className="list-item list-item-profile">
+          <div className={`list-item list-item-profile ${(activeUserMenu )? "userDashboardShow" : ""}`}>
             <h3>Welcome</h3>
             <span>To access account and manage orders</span>
             {
@@ -129,7 +135,7 @@ getallData()
     <div className="profilemenu">
 
     <Link to={'/cart'}>
-      <FontAwesomeIcon icon={faBagShopping}/>
+      <FontAwesomeIcon icon={faBagShopping} className='cartlistmenu'/>
    
       <h3>Bag{auth.cartItem}</h3></Link>
     </div>
